@@ -1,0 +1,188 @@
+[Header]
+operator: 
+device_name: HT160A
+tester_type: T800
+exec_type: AITest
+exec_version: x32 build-10 [TTR]
+program_name: HT160.uxo
+program_version: 2.2.0
+lot_id: 1009LAE0039
+sublot_id: sublotname
+handler_setup: 
+test_code: A
+sites_count: 1
+test_temperature: 
+start_time: 2022/04/02 17:47:36
+end_time: 2022/04/02 17:47:49
+product_group_name: 
+test_center: 
+program_dir: 
+program_path: 
+test_stage: 
+lot_size: 
+qa_enable: 
+low_yield_protect: 
+data_path: 
+upload_path: 
+file_name: 
+
+
+
+TCNT# 0        SITE# 0
+NO Site  Result  TestName           Signal          Measure   LowLimit  HighLimit   Force
+3    0   PASS  OS_NEG               CH_VCOMS_B1     -404.5454 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_VCOMS_T1     -408.7750 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_VREFN_B1     -406.1262 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_VREFN_T1     -402.3001 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_VREFP_B1     -410.9793 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_VREFP_T1     -407.2220 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_VRPGA_B1     -411.6211 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_VRPGA_T1     -408.8503 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_VDDCL1       -393.3620 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_RSH1         -389.6791 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_GRSTH1       -392.7144 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_TX2H1        -391.9865 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CH_TX1H1        -392.6918 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               SA              -409.0553 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               SYSSTBN         -431.3378 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               SYSRSTN         -334.5713 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               VCP2            -399.8180 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               VIREF           -448.7955 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               SDO             -471.3351 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               CSN             -468.5805 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               SCK             -470.4087 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               SDI             -440.3650 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               HSYNC           -332.9718 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               VSYNC           -394.0253 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               DTSTR0          -466.5942 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               DTSTR1          -469.2300 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               DTSTR3          -472.8081 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               DTSTR4          -474.7340 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               TOUT0           -469.2965 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               TOUT1           -342.2493 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               TOUT2           -473.1237 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               ATST0           -449.4366 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               ATST1           -451.3279 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               ATST2           -448.2053 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               RCK2            -469.5975 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               TRGEXP          -390.6326 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_NEG               MSTSLV          -345.2122 mV   -800.0000mV   -100.0000mV   -100.0000uA
+3    0   PASS  OS_POS               CH_TX2L1        400.5138 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_GRSTL1       405.1785 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_TX1L1        405.3405 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               VCP1            439.9809 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_VCOMS_B1     362.7360 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_VCOMS_T1     363.6647 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_VREFN_B1     364.0154 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_VREFN_T1     363.1974 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_VREFP_B1     338.2055 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_VREFP_T1     337.0029 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_VRPGA_B1     363.9337 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_VRPGA_T1     363.2789 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CH_VDDCL1       423.8133 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               SA              375.4444 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               SYSSTBN         388.6851 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               SYSRSTN         428.6218 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               VIREF           402.1553 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               SDO             431.0952 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               CSN             428.3671 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               SCK             428.4662 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               SDI             397.1310 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               HSYNC           394.5135 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               VSYNC           395.7568 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               DTSTR0          429.9110 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               DTSTR1          428.8011 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               DTSTR3          433.3991 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               DTSTR4          432.5981 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               TOUT0           430.7781 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               TOUT1           430.8516 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               TOUT2           430.8092 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               ATST0           389.9786 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               ATST1           393.1652 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               ATST2           381.5233 mV   100.0000mV   800.0000mV   100.0000uA
+3    0   PASS  OS_POS               RCK2            428.2849 mV   100.0000mV   800.0000mV   100.0000uA
+8    0   PASS  PLL                  RCK2            55.6872 M   50.0000M   60.0000M   0.0000
+9    0    PASS   SPI_CNTR   SPI_CNTR_1.SPI_CNTR_1   SPI   FC(0)      FA(0)
+10   0    PASS   SPI_TSG1   SPI_TSG1.SPI_TSG1   SPI   FC(0)      FA(0)
+11   0    PASS   SPI_TSG2   SPI_TSG2.SPI_TSG2   SPI   FC(0)      FA(0)
+12   0   PASS  VIREF                VIREF           1.2920 V   900.0000mV   1.3000V   0.0000A
+13   0   PASS  Vref                 CH_VCOMS_B1     1.2946 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref                 CH_VCOMS_T1     1.2848 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref                 CH_VREFN_B1     1.2850 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref                 CH_VREFN_T1     1.2949 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref                 CH_VREFP_B1     2.3464 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref                 CH_VREFP_T1     2.3641 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref                 CH_VRPGA_B1     1.3383 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref                 CH_VRPGA_T1     1.3473 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref_Double          CH_VCOMS_B1     1.2868 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref_Double          CH_VCOMS_T1     1.2870 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref_Double          CH_VREFN_B1     1.2880 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref_Double          CH_VREFN_T1     1.2878 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref_Double          CH_VREFP_B1     2.3664 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref_Double          CH_VREFP_T1     2.3672 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref_Double          CH_VRPGA_B1     1.3401 V   0.0000V   3.0000V   0.0000A
+13   0   PASS  Vref_Double          CH_VRPGA_T1     1.3407 V   0.0000V   3.0000V   0.0000A
+14   0   FAIL  Pix                  CH_RSH1         4.5482 V   3.9000V   4.5000V   0.0000A
+14   0   FAIL  Pix                  CH_GRSTH1       4.5142 V   3.9000V   4.5000V   0.0000A
+14   0   PASS  Pix                  CH_TX2L1        -1.0704 V   -1.4000V   -1.0000V   0.0000A
+14   0   PASS  Pix                  CH_TX1L1        -1.0439 V   -1.4000V   -1.0000V   0.0000A
+14   0   PASS  Pix                  CH_TX2H1        3.9177 V   3.4000V   4.0000V   0.0000A
+14   0   PASS  Pix                  CH_TX1H1        3.9734 V   3.4000V   4.0000V   0.0000A
+14   0   PASS  Pix                  CH_VDDCL1       790.3450 mV   500.0000mV   900.0000mV   0.0000A
+14   0   PASS  Pix                  CH_GRSTL1       -370.3959 mV   -700.0000mV   -300.0000mV   0.0000A
+15   0    PASS   ATST_VBGR  Vref_VBGR.Vref_VBGR   SPI   FC(0)      FA(0)
+15   0   PASS  ATST_VBGR            ATST1           1.2970 V   1.0000V   1.3000V   0.0000A
+14   0    PASS   Vref_VBN1  Vref_VBN1.Vref_VBN1   SPI   FC(0)      FA(0)
+14   0   PASS  Vref_VBN1            ATST0           1.1094 V   1.0000V   1.3000V   0.0000A
+14   0   PASS  Vref_VBN1            ATST1           1.1014 V   1.0000V   1.3000V   0.0000A
+14   0    PASS   Vref_PGAOUT Vref_PGAOUT.Vref_PGAOUT   SPI   FC(0)      FA(0)
+14   0   PASS  Vref_PGAOUT          ATST0           1.3804 V   1.1000V   1.4000V   0.0000A
+14   0   PASS  Vref_PGAOUT          ATST1           1.3776 V   1.1000V   1.4000V   0.0000A
+14   0    PASS   Vref_VBias1 Vref_VBias1.Vref_VBias1   SPI   FC(0)      FA(0)
+14   0   PASS  Vref_VBias1          ATST0           1.2328 V   900.0000mV   1.3000V   0.0000A
+14   0   PASS  Vref_VBias1          ATST1           1.1623 V   900.0000mV   1.3000V   0.0000A
+14   0    PASS   Vref_VBias2 Vref_VBias2.Vref_VBias2   SPI   FC(0)      FA(0)
+14   0   PASS  Vref_VBias2          ATST0           1.2319 V   900.0000mV   1.3000V   0.0000A
+14   0   PASS  Vref_VBias2          ATST1           1.1967 V   900.0000mV   1.3000V   0.0000A
+14   0    PASS   Vref_VBias3 Vref_VBias3.Vref_VBias3   SPI   FC(0)      FA(0)
+14   0   PASS  Vref_VBias3          ATST0           2.5179 V   2.3000V   2.7000V   0.0000A
+14   0   PASS  Vref_VBias3          ATST1           2.4295 V   2.3000V   2.7000V   0.0000A
+14   0    PASS   Vref_VBias4 Vref_VBias4.Vref_VBias4   SPI   FC(0)      FA(0)
+14   0   PASS  Vref_VBias4          ATST0           906.9133 mV   700.0000mV   1.0000V   0.0000A
+14   0   PASS  Vref_VBias4          ATST1           900.6308 mV   700.0000mV   1.0000V   0.0000A
+14   0    PASS   IREF       Iref_IREF.Iref_IREF   SPI   FC(0)      FA(0)
+14   0   PASS  IREF                 ATST0_20K       1.1855 V   700.0000mV   1.2000V   0.0000A
+14   0   PASS  IREF                 ATST1_20K       1.0959 V   700.0000mV   1.2000V   0.0000A
+14   0    PASS   Iref_PLL   Iref_PLL.Iref_PLL   SPI   FC(0)      FA(0)
+14   0   PASS  Iref_PLL             ATAT2_20K       1.1454 V   700.0000mV   1.3000V   0.0000A
+14   0    PASS   ADC        ADC_config.ADC_config   SPI   FC(0)      FA(0)
+14   0    PASS   ADC        ADC.ADC   SPI   FC(0)      FA(0)
+AnalysisData_Dtstr1 result is 1
+14   0   PASS  ADC                  compare        1.0000      0.0000     2.0000 
+14   0    PASS   ADC        ADC.ADC   SPI   FC(0)      FA(0)
+AnalysisData_Dtstr1 result is 1
+14   0   PASS  ADC                  compare        1.0000      0.0000     2.0000 
+14   0    PASS   SYNCGEN_test SYNCGEN_config.SYNCGEN_config   SPI   FC(0)      FA(0)
+14   0    PASS   SYNCGEN_test SYNCGEN_test.SYNCGEN_test   SPI   FC(0)      FA(0)
+AnalysisData_DTSTL4 result is 1
+14   0   PASS  SYNCGEN_test         compare        1.0000      0.0000     2.0000 
+14   0    PASS   ADLG       ADLG_config.ADLG_config   SPI   FC(0)      FA(0)
+14   0    PASS   ADLG       ADLG.ADLG   SPI   FC(0)      FA(0)
+14   0   PASS  ADLG                 compare        1.0000      0.0000     2.0000 
+14   0    PASS   ADLG       ADLG.ADLG   SPI   FC(0)      FA(0)
+AnalysisData_ADLG_DTSTR0 result is 1
+14   0   PASS  ADLG                 compare        1.0000      0.0000     2.0000 
+14   0    PASS   TSG_TEST   TSG_config.TSG_config   SPI   FC(0)      FA(0)
+14   0    PASS   TSG_TEST   TSG.TSG   SPI   FC(0)      FA(0)
+14   0   PASS  TSG_TEST             compare        1.0000      0.0000     2.0000 
+14   0    PASS   TSG_TEST   TSG.TSG   SPI   FC(0)      FA(0)
+14   0   PASS  TSG_TEST             compare        1.0000      0.0000     2.0000 
+14   0    PASS   TSG2_TEST  TSG2_config.TSG2_config   SPI   FC(0)      FA(0)
+14   0    PASS   TSG2_TEST  TSG2.TSG2   SPI   FC(0)      FA(0)
+14   0   PASS  TSG2_TEST            compare        1.0000      0.0000     2.0000 
+14   0    PASS   TSG2_TEST  TSG2.TSG2   SPI   FC(0)      FA(0)
+14   0   PASS  TSG2_TEST            compare        1.0000      0.0000     2.0000 
+-------------------   ------------
+Site   Fail   Total    Cate   Bin    XCoord   YCoord         TestTime(12991.2ms)
+-------------------   ------------
+   0      1       1      60     9       1       0
