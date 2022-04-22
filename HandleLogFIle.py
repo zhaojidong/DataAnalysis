@@ -5,14 +5,13 @@ import pandas as pd
 
 test_name_dict = {}
 signal_list = []
-log_file_path = r'D:\Python\Project\DataAnalysis\1009LAE0039'
+log_file_path = r'D:\PythonProject\20220422\DataAnalysis\1009LAE0039'
 pattern1 = re.compile(r'(TCNT#)\s*[0-9](\s*)(SITE#)(\s*)', re.I)
 pattern2 = re.compile(r'-------------------', re.I)
 
 
 def LogFile():
     pd.set_option('display.width', None)
-
     # Follow Code: get all files name and file count
     file_name_list = os.listdir(log_file_path)
     file_total = len(file_name_list)
@@ -60,7 +59,6 @@ def LogFile():
                             execute_once = False
                             NewList = [[x] for x in line]
                             pd_dict = dict(zip(title_list,NewList))
-                            # print(pd.DataFrame(pd_dict, index=[0]))
                         else:
                             line_count = 0
                             for key in title_list:
@@ -76,10 +74,6 @@ def LogFile():
         break
 
 
-def tryyyyy():
-    dicttry = {'qaz':['q','a','z'],'wsx':['w','s','x']}
-    new_pd_dict = pd.DataFrame(dicttry)
-    print(new_pd_dict)
 
 
 if __name__ == '__main__':
