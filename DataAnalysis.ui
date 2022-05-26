@@ -23,27 +23,30 @@
       <height>931</height>
      </rect>
     </property>
+    <property name="autoExpandDelay">
+     <number>-1</number>
+    </property>
     <column>
      <property name="text">
-      <string notr="true">1</string>
+      <string notr="true">请选择目标文件夹...</string>
      </property>
     </column>
    </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>860</x>
+      <x>640</x>
       <y>0</y>
       <width>411</width>
-      <height>941</height>
+      <height>931</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_yeild">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>20</y>
+      <x>450</x>
+      <y>0</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -59,7 +62,7 @@
      <x>0</x>
      <y>0</y>
      <width>1288</width>
-     <height>30</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

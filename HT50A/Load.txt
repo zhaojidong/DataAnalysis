@@ -1,0 +1,159 @@
+Instrument file : [C:\AITest\setup\Instruments.config]
+Process Type : wxFlow
+JOB Control Type : Library
+Start Robot Interface : PseudoRobot_CSMT
+Loading Job : E:\ATD_Futong\??\?????\HT50A_20220329\HT160\HT160.wxFlow ...
+Success to connect client socket : OK
+Job Netwrk Client Netwrk : OK
+[ACCAL] Length = 3.050000
+Load estiming [D2] : 2109304000DD1-1F90-A778-B9D22AB9F2AE.estiming : OK
+[D2] [2109304000DD1-1F90-A778-B9D22AB9F2AE] : Sync module Comp(21) Drv(16)
+Load estiming [D3] : 210930400074F-EE58-BF1F-F1A6C972085F.estiming : OK
+[D3] [210930400074F-EE58-BF1F-F1A6C972085F] : Sync module Comp(23) Drv(15)
+Load estiming [D4] : 1903074000CC0-166D-A49F-D5BB2A769D6F.estiming : OK
+[D4] [1903074000CC0-166D-A49F-D5BB2A769D6F] : Sync module Comp(19) Drv(8)
+Load estiming [D5] : 1902224000BB1-CD07-ADA6-DEDA550AC5CF.estiming : OK
+[D5] [1902224000BB1-CD07-ADA6-DEDA550AC5CF] : Sync module Comp(0) Drv(0)
+Load estiming [D11] : 210930400015C-8727-AB03-37CB7B9E169D.estiming : OK
+[D11] [210930400015C-8727-AB03-37CB7B9E169D] : Sync module Comp(11) Drv(12)
+Load estiming [D12] : 2109304000729-2AA1-9A19-DF5DABD1988E.estiming : OK
+[D12] [2109304000729-2AA1-9A19-DF5DABD1988E] : Sync module Comp(19) Drv(14)
+Load estiming [D13] : 2112234000E39-E2F8-AF58-B8485FDDF390.estiming : OK
+[D13] [2112234000E39-E2F8-AF58-B8485FDDF390] : Sync module Comp(28) Drv(22)
+Load estiming [D14] : 1912124000E94-B510-BBB2-625C51A44C8C.estiming : OK
+[D14] [1912124000E94-B510-BBB2-625C51A44C8C] : Sync module Comp(20) Drv(19)
+RTD AlignTime : 13.864954
+=============================
+Total Instruments : 10
+=============================
+[0] (D2) HDM800 : Rev(0400) Serial(2109304000DD1-1F90-A778-B9D22AB9F2AE)
+			[D2] Comm Firmware version is the latest(E). 
+			[D2] TP-1 Firmware version is the latest(E). 
+			[D2] TP-2 Firmware version is the latest(E). 
+			[D2] Control Firmware version is the latest(B). 
+[1] (D3) HDM800 : Rev(0400) Serial(210930400074F-EE58-BF1F-F1A6C972085F)
+			[D3] Comm Firmware version is the latest(E). 
+			[D3] TP-1 Firmware version is the latest(E). 
+			[D3] TP-2 Firmware version is the latest(E). 
+			[D3] Control Firmware version is the latest(B). 
+[2] (D4) HDM800 : Rev(0400) Serial(1903074000CC0-166D-A49F-D5BB2A769D6F)
+			[D4] Comm Firmware version is the latest(E). 
+			[D4] TP-1 Firmware version is the latest(E). 
+			[D4] TP-2 Firmware version is the latest(E). 
+			[D4] Control Firmware version is the latest(B). 
+[3] (D5) HDM800 : Rev(0400) Serial(1902224000BB1-CD07-ADA6-DEDA550AC5CF)
+			[D5] Comm Firmware version is the latest(E). 
+			[D5] TP-1 Firmware version is the latest(E). 
+			[D5] TP-2 Firmware version is the latest(E). 
+			[D5] Control Firmware version is the latest(B). 
+[4] (D11) HDM800 : Rev(0400) Serial(210930400015C-8727-AB03-37CB7B9E169D)
+			[D11] Comm Firmware version is the latest(E). 
+			[D11] TP-1 Firmware version is the latest(E). 
+			[D11] TP-2 Firmware version is the latest(E). 
+			[D11] Control Firmware version is the latest(B). 
+[5] (D12) HDM800 : Rev(0400) Serial(2109304000729-2AA1-9A19-DF5DABD1988E)
+			[D12] Comm Firmware version is the latest(E). 
+			[D12] TP-1 Firmware version is the latest(E). 
+			[D12] TP-2 Firmware version is the latest(E). 
+			[D12] Control Firmware version is the latest(B). 
+[6] (D13) HDM800 : Rev(0400) Serial(2112234000E39-E2F8-AF58-B8485FDDF390)
+			[D13] Comm Firmware version is the latest(E). 
+			[D13] TP-1 Firmware version is the latest(E). 
+			[D13] TP-2 Firmware version is the latest(E). 
+			[D13] Control Firmware version is the latest(B). 
+[7] (D14) HDM800 : Rev(0400) Serial(1912124000E94-B510-BBB2-625C51A44C8C)
+			[D14] Comm Firmware version is the latest(E). 
+			[D14] TP-1 Firmware version is the latest(E). 
+			[D14] TP-2 Firmware version is the latest(E). 
+			[D14] Control Firmware version is the latest(B). 
+ 8. (U1) UTP128 : Id(15) Rev(2601) Serial(210708020030C-8DD1-508E-77E2FC902DB2)
+               COMM FPGA Firmware ver : 1802
+               CBIT FPGA Firmware ver : 0x0000
+ 9. (V1) SMU10 : Id(8) Rev(0927) Serial(201225080089C-3333-A815-8F9E2B3741F5)
+              [V1] First FPGA Firmware ver : 0000
+              [V1] Second FPGA Firmware ver : 0000
+[D2] : Sync Cal Pass (P:1C09:0)
+[D3] : Sync Cal Pass (P:2309:0)
+[D4] : Sync Cal Pass (P:1F09:0)
+[D5] : Sync Cal Pass (P:1809:0)
+[D11] : Sync Cal Pass (P:1F09:0)
+[D12] : Sync Cal Pass (P:1F09:0)
+[D13] : Sync Cal Pass (P:2409:0)
+[D14] : Sync Cal Pass (P:1E09:0)
+######################
+#  WXFlow  Test Flow #
+( 0)        nop  0  0 (Grp Test            ) - AITemplete   (Group) : OK
+( 1)        nop  0  0 (OS_NEG              ) - UserFunc (OS_NEG) : OK
+( 2)        nop  0  0 (OS_POS              ) - UserFunc (OS_POS) : OK
+( 3)        nop  0  0 (SPI_CNTR            ) - UserFunc (SPI_CNTR) : OK
+( 4)        nop  0  0 (SPI_TSG1            ) - UserFunc (SPI_TSG1) : OK
+( 5)        nop  0  0 (SPI_TSG2            ) - UserFunc (SPI_TSG2) : OK
+( 6)        nop  0  0 (VIREF               ) - UserFunc (VIREF) : OK
+( 7)        nop  0  0 (Vref                ) - UserFunc (Vref) : OK
+( 8)        nop  0  0 (Vref_Double         ) - UserFunc (Vref_Double) : OK
+( 9)        nop  0  0 (Pix                 ) - UserFunc (Pix) : OK
+(10)        nop  0  0 (ATST_VBGR           ) - UserFunc (ATST_VBGR) : OK
+(11)        nop  0  0 (Vref_VBN1           ) - UserFunc (Vref_VBN1) : OK
+(12)        nop  0  0 (Vref_PGAOUT         ) - UserFunc (Vref_PGAOUT) : OK
+(13)        nop  0  0 (Vref_VBias1         ) - UserFunc (Vref_VBias1) : OK
+(14)        nop  0  0 (Vref_VBias2         ) - UserFunc (Vref_VBias2) : OK
+(15)        nop  0  0 (Vref_VBias3         ) - UserFunc (Vref_VBias3) : OK
+(16)        nop  0  0 (Vref_VBias4         ) - UserFunc (Vref_VBias4) : OK
+(17)        nop  0  0 (IREF                ) - UserFunc (IREF) : OK
+(18)        nop  0  0 (Iref_PLL            ) - UserFunc (Iref_PLL) : OK
+(19)        nop  0  0 (ADC                 ) - UserFunc (ADC) : OK
+(20)        nop  0  0 (SYNCGEN_test        ) - UserFunc (SYNCGEN_test) : OK
+(21)        nop  0  0 (ADLG                ) - UserFunc (ADLG) : OK
+(22)        nop  0  0 (TSG_TEST            ) - UserFunc (TSG_TEST) : OK
+(23)        nop  0  0 (TSG2_TEST           ) - UserFunc (TSG2_TEST) : OK
+########  END  ######
+[Pattern Loaded Information]
+0 DCExec E:\ATD_Futong\??\?????\HT50A_20220329\HT160\Out\DCExec.module.gz 0 0 0 0 0 0 0
+1 DCSeq E:\ATD_Futong\??\?????\HT50A_20220329\HT160\Out\DCSeq.module.gz 0 0 0 0 0 0 0
+2 DCSpec E:\ATD_Futong\??\?????\HT50A_20220329\HT160\Out\DCSpec.module.gz 0 0 0 0 0 0 0
+3 PatExec E:\ATD_Futong\??\?????\HT50A_20220329\HT160\Out\PatExec.vox.gz 1293 16646 17939 0 1293 0 25
+4 PinLevel E:\ATD_Futong\??\?????\HT50A_20220329\HT160\Out\PinLevel.module.gz 0 0 0 1293 1293 25 25
+5 Signals E:\ATD_Futong\??\?????\HT50A_20220329\HT160\Out\Signals.module.gz 0 0 0 1293 1293 25 25
+6 Timeset E:\ATD_Futong\??\?????\HT50A_20220329\HT160\Out\Timeset.module.gz 0 0 0 1293 1293 25 25
+D2 : Driver(12.781250):(12.687500:12.882813) Comparator(13.417969):(13.402344:13.500000) TDR(7.148438:7.421875(0.273438):1.631484V)
+D3 : Driver(12.820313):(12.710938:12.921875) Comparator(13.320313):(13.312500:13.421875) TDR(7.070313:7.421875(0.351563):1.631484V)
+D4 : Driver(13.125000):(13.039063:13.242188) Comparator(13.671875):(13.660156:13.773438) TDR(7.187500:7.539063(0.351563):1.631484V)
+D5 : Driver(12.773438):(12.664063:12.914063) Comparator(13.171875):(13.160156:13.238281) TDR(7.148438:7.500000(0.351563):1.631484V)
+D11 : Driver(12.664063):(12.562500:12.757813) Comparator(13.191406):(13.187500:13.269531) TDR(7.109375:7.500000(0.390625):1.631484V)
+D12 : Driver(12.960938):(12.875000:13.093750) Comparator(13.390625):(13.367188:13.480469) TDR(7.148438:7.500000(0.351563):1.631484V)
+D13 : Driver(12.945313):(12.812500:13.070313) Comparator(13.457031):(13.449219:13.546875) TDR(6.992188:7.460938(0.468750):1.631484V)
+D14 : Driver(12.742188):(12.640625:12.859375) Comparator(13.261719):(13.226563:13.328125) TDR(6.953125:7.421875(0.468750):1.631484V)
+Ver(A002) Total AlignTime (13.864954), Driver (13.242188), Comparator (13.160156)
+Loaded Default TDR Value RTD(5), DCL(1.364954)
+EQExec CompleteLoaded
+[Timing Accel Mode] : fast
+Slot-3 [D4] : set LPD-1
+Slot-4 [D5] : set LPD-1
+PG Stop Mode : StopOnFail
+EQHardWare CompleteLoaded
+EQDCTester CompleteLoaded
+Execute User Load : OK
+ === System validate check : start ===
+Check System Validateion : Pass
+ === System validate check : end ===
+Job Datalog Wait : OK (0)
+Job Datalog Client PIPE : OK (0)
+Success to connect client socket : OK
+Job Netwrk Client Netwrk : OK (0)
+Library : [Release DLL]
+JobType  : [wxFlow]
+Job      : [E:\ATD_Futong\??\?????\HT50A_20220329\HT160\HT160.wxFlow]
+Path     : [E:\ATD_Futong\??\?????\HT50A_20220329\HT160]
+File     : [HT160.uxo]
+WaferMap : []
+DSP      : [No Use]
+IDP      : [no]
+Sort     : []
+Yield Protect  :  Not Applied
+Online Mode
+E:\ATD_Futong\??\?????\HT50A_20220329\HT160\HT160.wxFlow : JobControl Library .. OK
+Create Shared DUT Structure : Sucess
+Job Loaded : Sucess
+#################################################
+####               Load Complete             ####
+#################################################
