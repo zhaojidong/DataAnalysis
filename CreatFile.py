@@ -4,8 +4,8 @@ Create all excel or other files
 import openpyxl, time, glovar as glv
 import pandas as pd
 
-gs = glv.global_string()
-
+gs = glv.global_str()
+gss = glv.global_status_str()
 
 def create_report_excel(report_name):
     time_str = time.strftime("%Y%m%d%H%M%S", time.localtime())
@@ -30,20 +30,18 @@ This excel is used to record the Volume Production
                 DUTn_num      x       
   <Sheet_TestItem>
 """
-
-
 def CreateExcel_VP_log():
     report_name = 'VP_'
     Rcord_excel_pd = glv.marked_df
-    shift_count = glv.single_dut_row
+    shift_count = glv.log_row
     test_name_count = len(glv.tree_checked)
     wb, save_path = create_report_excel(report_name)
-    Rcord_excel_pd.to_csv(r'D:\Python\Project\DataAnalysis\final_pd.txt')
+    Rcord_excel_pd.to_csv(glv.final_path)
     enter = False
     for index, row in Rcord_excel_pd.iterrows():
         sheet_num = test_name_count
         # if index == 0
-        if Rcord_excel_pd.at[index, str(gs.CheckStatus)] == str(glv.Checked):
+        if Rcord_excel_pd.at[index, str(gs.CheckStatus)] == str(gss.Checked):
             if index == 0:  # first line do not need to judge
                 # ws = wb.create_sheet(str(Rcord_excel_pd.at[index, str(gs.TestName)]), sheet_num)
                 sh_name = wb.sheetnames  # 获取所有sheet
@@ -58,7 +56,6 @@ def CreateExcel_VP_log():
                 ws.title = Rcord_excel_pd.at[index, str(gs.TestName)]
                 enter = True
             elif Rcord_excel_pd.at[index, str(gs.TestName)] != Rcord_excel_pd.at[index - 1, str(gs.TestName)]:
-                print(Rcord_excel_pd.at[index, str(gs.TestName)])
                 ws = wb.create_sheet(str(Rcord_excel_pd.at[index, str(gs.TestName)]), sheet_num)
                 sheet_num += 1
                 row_num = 0
@@ -83,7 +80,7 @@ def CreateExcel_VP_log():
                     ws.cell(row=2 + dut + glv.dut_count*row_num, column=4, value=Rcord_excel_pd.at[
                         index + dut * shift_count, str(gs.Result)])  # write Result in column 1, row++
                 row_num += 1
-        if index == glv.single_dut_row-1:  # subtract the -EOL- line
+        if index == glv.log_row-1:  # subtract the -EOL- line
             break
     wb.save(save_path)
 

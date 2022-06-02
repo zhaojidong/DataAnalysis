@@ -1,21 +1,30 @@
-import sys, re, linecache, os, time, glovar as glv
-from PyQt5 import QtWidgets, QtCore
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+"""
+@author: Ansel.Zhao
+@file: main.py
+@time: 2022/5/23 9:00
+"""
+import sys, re, linecache, os, time, glovar as glv, TRY
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon, QBrush, QColor
 from PyQt5.QtCore import Qt
-
-import CreatFile
 from DataAnalysis import Ui_MainWindow
-import HandleLogFIle
-# from datahandle import Datahandle
-import pandas as pd
+import CreatFile, HandleLogFIle
 from PyQt5.QtWidgets import QTreeWidgetItem, QTreeWidget, QWidget, QVBoxLayout, QPushButton, QApplication
+import numpy as np
 
+from matplotlib import pyplot as plt
+import matplotlib
+# matplotlib.use('QtAgg')  # 指定渲染后端。QtAgg后端指用Agg二维图形库在Qt控件上绘图。
+# from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT as NavigationToolbar
+
+MF = TRY.MyFigure()
+gs = glv.global_str()
+gts = glv.global_table_str()
 test_name_dict = {}
 signal_list = []
 log_file_path = r''
-pattern1 = re.compile(r'(TCNT#)\s*[0-9](\s*)(SITE#)(\s*)', re.I)  # find 'TCNT# 0        SITE# 0' as start label
-pattern2 = re.compile(r'-------------------', re.I)
 
 
 class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
@@ -35,98 +44,35 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         self.file_name_list = None
         self.root = None
         self.init()
+        # self.plotfig()
+
 
     def init(self):
         self.setupUi(myWindow)
         myWindow.setWindowTitle('海图微数据分析工具')
-        myWindow.setWindowIcon(QIcon(r'D:\Python\MyLogo\log_snail.jpeg'))
+        # myWindow.setWindowIcon(QIcon(r'D:\Python\MyLogo\log_snail.jpeg'))
         # self.create_tree()
         self.button_handler()
+        # self.initFigure()
+
 
     def button_handler(self):
         self.btn_yeild.clicked.connect(lambda: self.handle_checked_item())
         self.actionOpen.triggered.connect(lambda: HT_DataAnalysis_UI.actionOpen(self))
 
     def actionOpen(self):
-        # self.open_file_path = QFileDialog.getExistingDirectory(None, '选择文件夹', r'')  # D:\\
-        glv.selected_file_list, fileType = QFileDialog.getOpenFileNames(self, "文件选择", r"D:\Python\Project\DataAnalysis", "所有文件 (*);;文本文件 (*.txt)")  # D:\\
-        print(len(glv.selected_file_list))
+        self.handleDisplay('<font color=\"#0000FF\">---- Loading the log file...  ----<font>')
+        glv.selected_file_list, fileType = QFileDialog.getOpenFileNames(self, "文件选择", r"C:\007\PythonProject\DataAnalysis", "所有文件 (*);;文本文件 (*.txt)")  # D:\\
         if len(glv.selected_file_list) == 0:
             self.handleDisplay('No object selected!')
             return
-        self.handleDisplay(str(glv.selected_file_list))
         self.tree.clear()
         self.create_tree()
 
-    # Read log file, covert to pandas format, return the data
-    # def handle_logFile(self):
-    #     pd.set_option('display.width', None)
-    #     # Follow Code: get all files name and file count
-    #     self.file_name_list = os.listdir(self.open_file_path)
-    #     self.file_total = len(self.file_name_list)
-    #     # Follow Code: open file and handle
-    #     for i in range(self.file_total):
-    #         self.file_path = self.open_file_path + '\\' + self.file_name_list[i]
-    #         # fp = open(self.file_path,'rb')
-    #         # Follow Code: get line's total sum
-    #         count = -1
-    #         for count, line in enumerate(open(self.file_path, 'r')):
-    #             pass
-    #         count += 1
-    #         # Follow Code: read line information
-    #         for line_data in range(count):
-    #             text = linecache.getline(self.file_path, line_data)
-    #             # Follow Code: Find the title's line
-    #             if re.search(pattern1, text):
-    #                 # after title line, the second line is data
-    #                 line_target = line_data + 2
-    #                 title = linecache.getline(self.file_path, line_data + 1)
-    #                 # Follow Code: Title, convert to list
-    #                 title_list = title.split()
-    #                 title_len = len(title_list)
-    #                 execute_once = True
-    #                 self.test_item = count - line_target
-    #                 for line_target in range(line_target, count):
-    #                     text = linecache.getline(self.file_path, line_target)
-    #                     # split according to signal space
-    #                     line = re.split(r"[ ]+", text)
-    #                     # delete '\n':strip() used for \n and space defaulted
-    #                     line = [x.strip() for x in line]
-    #                     # merger the unit with the front data
-    #                     for index, value in enumerate(line):
-    #                         if value == 'nV' or value == 'uV' or value == 'mV' or value == 'V' \
-    #                                 or value == 'nA' or value == 'uA' or value == 'mA' or value == 'A':
-    #                             line[index - 1] = line[index - 1] + line[index]
-    #                             del line[index]
-    #                     # list max length, append 'None' to
-    #                     for add_none_count in range(title_len - len(line)):
-    #                         line.append('None')
-    #                     # Follow Code: Add the end label to the pandas dataframe
-    #                     line_end = ['-']
-    #                     line_end = line_end * title_len
-    #                     line_end[0] = '-End of data-'
-    #                     if str(line[0]).isdigit():
-    #                         if execute_once:
-    #                             execute_once = False
-    #                             NewList = [[x] for x in line]
-    #                             pd_dict = dict(zip(title_list, NewList))
-    #                         else:
-    #                             line_count = 0
-    #                             for key in title_list:
-    #                                 pd_dict[key] = pd_dict.get(key, []) + [line[line_count]]
-    #                                 line_count = line_count + 1
-    #                                 if line_count > len(line) - 1:
-    #                                     break
-    #                 break
-    #         final_pd = pd.DataFrame(pd_dict)
-    #         final_pd.loc[len(final_pd)] = line_end
-    #         return final_pd
-    #         # fp.close()
-    #         # break
-
-    # get the data(pandas format), and show the data with tree construct
     def create_tree(self):
         tree_pd, final_pd, file_name_list, file_total = HandleLogFIle.ParseLogFile()
+        self.handleDisplay(str(len(glv.selected_file_list)) + ' files been selected')
+        self.handleDisplay('Dut count = ' + str(glv.dut_count))
         self.final_pd = final_pd
         self.file_name_list = file_name_list
         self.file_total = file_total
@@ -137,25 +83,29 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         # set the title
         self.tree.setHeaderLabels(['Key', 'Pass', 'Fail'])
         self.tree.setColumnWidth(0, 250)
+        self.tree.setColumnWidth(1, 40)
+        self.tree.setColumnWidth(2, 40)
         self.root = QTreeWidgetItem(self.tree)
         self.root.setText(0, 'Test Items')
         self.root.setCheckState(0, Qt.Unchecked)
         loop_count = 0
         while loop_count < (self.first_pd_rows - 1):
-            TestName = tree_pd.iloc[loop_count].at['TestName']
+            TestName = tree_pd.iloc[loop_count].at[str(gs.TestName)]  # at['TestName']
             if TestName == glv.end_label:
                 break
             child1 = QTreeWidgetItem()
             child1.setText(0, TestName)
             self.root.addChild(child1)
             child1.setCheckState(0, Qt.Unchecked)
-            while TestName == tree_pd.iloc[loop_count].at['TestName']:
-                SignalName = tree_pd.iloc[loop_count].at['Signal']
-                loop_count = loop_count + 1
+            while TestName == tree_pd.iloc[loop_count].at[str(gs.TestName)]:
+                SignalName = tree_pd.iloc[loop_count].at[str(gs.Signal)]
                 child2 = QTreeWidgetItem()
                 child2.setText(0, SignalName)
+                child2.setText(1, str(tree_pd.iloc[loop_count].at[str(gs.PASS_Count)]))
+                child2.setText(2, str(tree_pd.iloc[loop_count].at[str(gs.Fail_Count)]))
                 child1.addChild(child2)
                 child2.setCheckState(0, Qt.Unchecked)
+                loop_count = loop_count + 1
         # 加载根节点的所有属性与子控件
         self.tree.addTopLevelItem(self.root)
         # 节点全部展开
@@ -163,6 +113,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         # self.setCentralWidget(self.tree)
         self.tree.itemChanged.connect(self.handlechanged)
         self.tree.itemChanged.connect(self.__UpdateParent)
+        self.display_endInfo()
 
     def handlechanged(self, item, column):
         # f_list = ()
@@ -186,7 +137,6 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
             for baby in range(self.count):
                 if item.child(baby).checkState != Qt.Unchecked:
                     item.child(baby).setCheckState(0, Qt.Unchecked)
-
 
     def __UpdateParent(self, child):
         parent = child.parent()
@@ -216,7 +166,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
 
     # traverse the tree, get the checked and unchecked item
     def traverse_tree(self):
-        """遍历节点"""
+        """traverse node"""
         checked_items_dict = {}
         result_check = 3
         item = self.tree.topLevelItem(0)  # get root node
@@ -252,6 +202,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
             result_check = 0
         glv.checked_count_from_tree = note_checked_count
         glv.tree_checked = checked_items_dict
+        # print('checked_items_dict:', checked_items_dict)
         return checked_items_dict, result_check
 
     @classmethod
@@ -262,24 +213,60 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         print('get_traverse_tree')
         return get_result
 
-
     def handle_checked_item(self):
-        self.handleDisplay('<font color=\"#0000FF\">---- I AM WORKING...... ----<font>')
+        self.handleDisplay('<font color=\"#0000FF\">---- Export to excel...... ----<font>')
         self.traverse_tree()
-        # HandleLogFIle.ParseLogFile()
         HandleLogFIle.handle_FinalPd4tree()
-        CreatFile.CreateExcel_VP_log()
-        self.textEdit.append('.')
-        self.textEdit.append('.')
-        self.textEdit.append('.')
-        self.handleDisplay('<font color=\"#0000FF\">---- I AM FREE...... ----<font>')
-        self.handleDisplay(str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
-        self.handleDisplay('------------------------------------------')
+        self.handleDisplay('Yield = ' + str(glv.R_yield) + '%')
+        self.ploting()
+        # self.plotfig()
+        self.gen_report()
+        self.display_endInfo()
+
+    def ploting(self):
+        if self.comboBox_chart.currentText() == str(gts.Curve_chart):
+            print(str(gts.Curve_chart))
+            self.plotfig()
+        elif self.comboBox_chart.currentText() == str(gts.Histogram):
+            print(str(gts.Histogram))
+        elif self.comboBox_chart.currentText() == str(gts.Normal_distribution):
+            print(str(gts.Normal_distribution))
+        else:
+            print('No Chart')
+
+    def gen_report(self):
+        if self.comboBox_report.currentText() == str(gts.Excel_VP):
+            CreatFile.CreateExcel_VP_log()
+        else:
+            print('No Report')
+
+    def initFigure(self):
+        # self.fig = plt.figure()  # create figure object
+        # self.canvas = FigureCanvas(self.fig)  # create figure canvas
+        # self.figtoolbar = NavigationToolbar(self.canvas, self)  # create figure toolbar
+        # gb = QGridLayout(self.groupBox)
+        # gb.addWidget(self.figtoolbar)  # add the toolbar to UI
+        # gb.addWidget(self.canvas)  # add the canvas to UI
+        pass
+
+
+    def plotfig(self):  # 绘制matplot图形
+        # ax = self.fig.subplots()
+        # t = np.linspace(0, 2 * np.pi, 50)
+        # ax.plot(t, np.sin(t))
+        # ax.autoscale_view()
+        pass
 
     # display data with textEdit append
     def handleDisplay(self, data):
         self.textEdit.append(data)
         app.processEvents()
+
+    def display_endInfo(self):
+        # self.handleDisplay('<font color=\"#0000FF\">---- I AM FREE...... ----<font>')
+        self.handleDisplay(str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
+        self.handleDisplay('------------------------------------------')
+        self.handleDisplay('\r\n')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

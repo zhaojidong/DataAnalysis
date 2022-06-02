@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1288</width>
-    <height>991</height>
+    <width>1464</width>
+    <height>864</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QTreeWidget" name="tree">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>431</width>
-      <height>931</height>
+      <x>10</x>
+      <y>10</y>
+      <width>351</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="autoExpandDelay">
@@ -35,19 +35,19 @@
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>0</y>
-      <width>411</width>
-      <height>931</height>
+      <x>10</x>
+      <y>500</y>
+      <width>351</width>
+      <height>301</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_yeild">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>0</y>
-      <width>171</width>
+      <x>370</x>
+      <y>10</y>
+      <width>121</width>
       <height>41</height>
      </rect>
     </property>
@@ -55,13 +55,94 @@
      <string>Start Analysis</string>
     </property>
    </widget>
+   <widget class="QComboBox" name="comboBox_chart">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>80</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Histogram</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Curve chart</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Normal Distribution</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>0</y>
+      <width>931</width>
+      <height>771</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Table</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>120</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Report</string>
+    </property>
+    <widget class="QComboBox" name="comboBox_report">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>None</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>VP</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Normal</string>
+      </property>
+     </item>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1288</width>
+     <width>1464</width>
      <height>26</height>
     </rect>
    </property>
