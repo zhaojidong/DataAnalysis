@@ -12,25 +12,30 @@ from DataAnalysis import Ui_MainWindow
 import CreatFile, HandleLogFIle
 from PyQt5.QtWidgets import QTreeWidgetItem, QTreeWidget, QWidget, QVBoxLayout, QPushButton, QApplication
 import numpy as np
-
+import mplcursors
 from matplotlib import pyplot as plt
 import matplotlib
-# matplotlib.use('QtAgg')  # 指定渲染后端。QtAgg后端指用Agg二维图形库在Qt控件上绘图。
-# from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout
-from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT as NavigationToolbar
+from DrawWaveForm import DrawWaveForm as DWF
+import StatisticalAnalysis as SA
 
-MF = TRY.MyFigure()
+matplotlib.use('QtAgg')  # 指定渲染后端。QtAgg后端指用Agg二维图形库在Qt控件上绘图。
+# matplotlib.use('Qt5Agg')
+from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
+
 gs = glv.global_str()
 gts = glv.global_table_str()
 test_name_dict = {}
 signal_list = []
-log_file_path = r''
-
 
 class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):  # parent=None,so the HaiTu_UI is the topmost window
         super(HT_DataAnalysis_UI, self).__init__(
             parent)  # the super().__init__() excutes the constructor fo father, then we can use the property of father
+        self.gb = None
+        self.figtoolbar = None
+        self.canvas = None
+        self.error = True
         self.first_pd_rows = None
         self.original_dut_result = None
         self.final_pd = None
@@ -46,15 +51,12 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         self.init()
         # self.plotfig()
 
-
     def init(self):
         self.setupUi(myWindow)
         myWindow.setWindowTitle('海图微数据分析工具')
         # myWindow.setWindowIcon(QIcon(r'D:\Python\MyLogo\log_snail.jpeg'))
-        # self.create_tree()
+        self.initFigure()
         self.button_handler()
-        # self.initFigure()
-
 
     def button_handler(self):
         self.btn_yeild.clicked.connect(lambda: self.handle_checked_item())
@@ -62,10 +64,14 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
 
     def actionOpen(self):
         self.handleDisplay('<font color=\"#0000FF\">---- Loading the log file...  ----<font>')
-        glv.selected_file_list, fileType = QFileDialog.getOpenFileNames(self, "文件选择", r"C:\007\PythonProject\DataAnalysis", "所有文件 (*);;文本文件 (*.txt)")  # D:\\
+        glv.selected_file_list, fileType = QFileDialog.getOpenFileNames(self, "文件选择",
+                                                                        r"C:\007\PythonProject\DataAnalysis",
+                                                                        "所有文件 (*);;文本文件 (*.txt)")  # D:\\
         if len(glv.selected_file_list) == 0:
             self.handleDisplay('No object selected!')
+            self.error = True
             return
+        self.error = False
         self.tree.clear()
         self.create_tree()
 
@@ -116,24 +122,19 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         self.display_endInfo()
 
     def handlechanged(self, item, column):
-        # f_list = ()
-        # c_list = ()
-        # 获取选中节点的子节点个数
+        # Get the number of children of the selected node
         self.count = item.childCount()
         self.tree_item = item
-        check_status = True
-        # 如果被选中
+        # if check
         if item.checkState(column) == Qt.Checked:
-            # f_list.append(item.text(column))
-            # 连同下面子子节点全部设置为选中状态
+            # All the sub-nodes are set to select
             for baby in range(self.count):
-                # c_list.append(item.child(baby).text(column))
                 if item.child(baby).checkState(0) != Qt.Checked:
                     item.child(baby).setCheckState(0, Qt.Checked)
 
-        # 如果取消选中
+        # if uncheck
         elif item.checkState(column) == Qt.Unchecked:
-            # 连同下面子子节点全部设置为取消选中状态
+            # All the sub-nodes are set to deselect
             for baby in range(self.count):
                 if item.child(baby).checkState != Qt.Unchecked:
                     item.child(baby).setCheckState(0, Qt.Unchecked)
@@ -158,7 +159,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         else:
             if selectedCount == 0:
                 parent.setCheckState(0, Qt.Unchecked)
-            elif selectedCount > 0 and selectedCount < childCount:
+            elif 0 < selectedCount < childCount:
                 parent.setCheckState(0, Qt.PartiallyChecked)
             else:
                 parent.setCheckState(0, Qt.Checked)
@@ -168,7 +169,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
     def traverse_tree(self):
         """traverse node"""
         checked_items_dict = {}
-        result_check = 3
+        result_check = 0
         item = self.tree.topLevelItem(0)  # get root node
         test_counter = item.childCount()
         all_signal = 0
@@ -187,7 +188,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
                         signal_name = test_name.child(j).text(0)  # the text of son node
                         c_list.append(signal_name)
                 checked_items_dict[key] = c_list
-            elif test_name.checkState(0) == Qt.PartiallyChecked:    ##########UnChecked
+            elif test_name.checkState(0) == Qt.PartiallyChecked:
                 if count != 0:
                     for j in range(0, count):
                         if test_name.child(j).checkState(0) == Qt.Checked:
@@ -198,11 +199,11 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
                             c_list.append(signal_name)
                 if c_list:  # do not append to dict if the list is empty
                     checked_items_dict[key] = c_list
-        if result_check != 1:
-            result_check = 0
         glv.checked_count_from_tree = note_checked_count
         glv.tree_checked = checked_items_dict
         # print('checked_items_dict:', checked_items_dict)
+        if result_check:
+            self.error = False
         return checked_items_dict, result_check
 
     @classmethod
@@ -215,24 +216,18 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
 
     def handle_checked_item(self):
         self.handleDisplay('<font color=\"#0000FF\">---- Export to excel...... ----<font>')
-        self.traverse_tree()
+        if self.error:
+            self.handleDisplay('No item was selected!!!')
+            return
+        checked_dict, checked_res = self.traverse_tree()
+        if not checked_res:
+            self.handleDisplay('No item was selected!!!')
+            return
         HandleLogFIle.handle_FinalPd4tree()
         self.handleDisplay('Yield = ' + str(glv.R_yield) + '%')
         self.ploting()
-        # self.plotfig()
         self.gen_report()
         self.display_endInfo()
-
-    def ploting(self):
-        if self.comboBox_chart.currentText() == str(gts.Curve_chart):
-            print(str(gts.Curve_chart))
-            self.plotfig()
-        elif self.comboBox_chart.currentText() == str(gts.Histogram):
-            print(str(gts.Histogram))
-        elif self.comboBox_chart.currentText() == str(gts.Normal_distribution):
-            print(str(gts.Normal_distribution))
-        else:
-            print('No Chart')
 
     def gen_report(self):
         if self.comboBox_report.currentText() == str(gts.Excel_VP):
@@ -241,21 +236,33 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
             print('No Report')
 
     def initFigure(self):
-        # self.fig = plt.figure()  # create figure object
-        # self.canvas = FigureCanvas(self.fig)  # create figure canvas
-        # self.figtoolbar = NavigationToolbar(self.canvas, self)  # create figure toolbar
-        # gb = QGridLayout(self.groupBox)
-        # gb.addWidget(self.figtoolbar)  # add the toolbar to UI
-        # gb.addWidget(self.canvas)  # add the canvas to UI
-        pass
+        self.canvas = DWF()
+        self.figtoolbar = NavigationToolbar(self.canvas, self)
+        self.gb = QGridLayout(self.groupBox)
+        self.gb.addWidget(self.figtoolbar)  # add the toolbar to UI
+        self.gb.addWidget(self.canvas)  # add the canvas to UI
 
 
-    def plotfig(self):  # 绘制matplot图形
-        # ax = self.fig.subplots()
-        # t = np.linspace(0, 2 * np.pi, 50)
-        # ax.plot(t, np.sin(t))
-        # ax.autoscale_view()
-        pass
+
+    def ploting(self):
+        # self.gb.deleteLater()
+        self.canvas.init()
+        if self.comboBox_chart.currentText() == str(gts.Curve_chart):
+            print(str(gts.Curve_chart))
+            self.canvas.CurveGraph()
+        elif self.comboBox_chart.currentText() == str(gts.Scatter_diagram):
+            print(str(gts.Scatter_diagram))
+            self.canvas.ScatterDiagram()
+        elif self.comboBox_chart.currentText() == str(gts.Histogram):
+            print(str(gts.Histogram))
+            self.canvas.Histogram()
+        elif self.comboBox_chart.currentText() == str(gts.Normal_distribution):
+            print(str(gts.Normal_distribution))
+        elif self.comboBox_chart.currentText() == str(gts.Line_chart):
+            print(str(gts.Line_chart))
+        elif self.comboBox_chart.currentText() == str(gts.Box_plots):
+            print(str(gts.Box_plots))
+            self.canvas.BoxPlots()
 
     # display data with textEdit append
     def handleDisplay(self, data):
@@ -265,8 +272,9 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
     def display_endInfo(self):
         # self.handleDisplay('<font color=\"#0000FF\">---- I AM FREE...... ----<font>')
         self.handleDisplay(str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
-        self.handleDisplay('------------------------------------------')
+        self.handleDisplay('----------------------------------------')
         self.handleDisplay('\r\n')
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

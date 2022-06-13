@@ -6,10 +6,18 @@ NO, Site, Result, TestName, Signal, Measure, LowLimit, HighLimit, Force, CheckSt
                             ................DATA................
                             ....................................
 -End of line-, Site, Fail, Total, Cate, Bin, XCoord, YCoord, TestTime, DUT NO, -, -
-
+------------------------------------------------------------------------------------------------------------------------
 2...<<<data frame---generate chart>>>
             TestName_Signal.1  ...  TestName_Signal.n
 unit          uV/mV/V/A/M/R...
 dut_no.1
 ...
 dut_no.n
+------------------------------------------------------------------------------------------------------------------------
+3...<<<data frame---generate chart>>>
+                   DUT_0 ... DTU_n  AVE/Median/Stdev/Min/Max  LowLimit  HighLimit  Unit  CheckStatus
+TestName_Signal.1
+.
+.
+.
+TestName_Signal.n

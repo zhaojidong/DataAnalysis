@@ -179,6 +179,7 @@ def handle_FinalPd4tree():
             break
     glv.marked_df = target_df
     sa1 = SA.SA(target_df)
+    sa1.handle_EverySignalData()
 
 
 # unify the unit and value of measure and limit
