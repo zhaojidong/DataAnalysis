@@ -1,4 +1,4 @@
-import pandas as pd, re
+import pandas as pd, re, os
 from collections import Counter
 """
 # debug using
@@ -20,6 +20,7 @@ log_col = 0
 output_file_path = r'C:\007\PythonProject\Ref_Data\DataAnalysis\Out'
 dut_count = 0
 shift_count = 0
+char_name = ''
 checked_count_from_tree = 0
 final_df = pd.DataFrame()
 marked_df = pd.DataFrame()
@@ -39,9 +40,23 @@ all_units = ['nV', 'uV', 'mV', 'V', 'nA', 'uA', 'mA', 'A', 'HZ', 'M', 'MHZ', 'K'
 pat_unit = re.compile(r'(NO Site(\s+)Result(\s+)TestName)', re.I)
 plot_fmt_color = ['b', 'r', 'c', 'm', 'g', 'y', 'k', 'tan', 'gold', 'grey', 'peru']
 error_message = ''
+Chart_Success = False
+Chart_Checked = False
+SaveOpt = None
+Current_Path = ''
+Html_Path = ''
 """
 global class---dataframe title
 """
+
+class global_init:
+    def __init__(self):
+        self.current_path = None
+        self.init()
+
+    def init(self):
+        self.current_path = os.path.abspath('.')
+
 name_list = ['NO', 'Site', 'Result', 'TestName', 'Signal', 'Measure', 'LowLimit', 'HighLimit', 'Force',
              'CheckStatus', 'PASS_Count', 'Fail_Count', 'Unit']
 class global_str:
@@ -99,6 +114,7 @@ class global_status_str:
 glv_gss = global_status_str()
 # global class---global string
 class global_table_str:
+
     def __init__(self):
         self.none = str()
         self.Histogram = str()
@@ -108,13 +124,24 @@ class global_table_str:
         self.Line_chart = str()
         self.Box_plots = str()
 
+        self.Chart_Html = str()
+
         self.Excel_VP = str()
 
+        self.Separation = str()
+        self.Combination = str()
+
         self.setValue('None', 'Histogram', 'CurveChart', 'NormalDistribution', 'ScatterDiagram', 'LineChart', 'BoxPlots',
-                      'VP')
+                      'Chart_Html',
+                      'VP',
+                      'Separation',
+                      'Combination'
+                      )
 
     def setValue(self, none, Histogram, Curve_chart, Normal_distribution, Scatter_diagram, Line_chart, Box_Plots,
-                 VP):
+                 Chart_Html,
+                 VP,
+                 Separation, Combination):
         self.none = none
         self.Histogram = Histogram
         self.Curve_chart = Curve_chart
@@ -123,8 +150,12 @@ class global_table_str:
         self.Line_chart = Line_chart
         self.Box_plots = Box_Plots
 
+        self.Chart_Html = Chart_Html
+
         self.Excel_VP = VP
 
+        self.Separation = Separation
+        self.Combination = Combination
 
 # Average , Median, Variance, Standard deviation, Max, Min
 class global_math:
@@ -256,15 +287,31 @@ def extractUnit7UnifyValue(data_l):
                     final_res[d] = digital_l[d] / 1e9
     return final_res, error_flag, unit
 
+def List_OneD2TwoD(data_l, len_l):
+    result_l = []
+    for y in range(0, int(len(data_l)/len_l)):
+        for x in range(0, len_l):
+            if x == 0:
+                result_l.append([])
+            result_l[y].append(data_l[x + y * len_l])
+    return result_l
 
-if __name__ == '__main__':
-    data = ['-398.7766mV', '-406.6084mV', '-399.6171mV', '-404.3162mV']
-    extractUnit7UnifyValue(data)
-    # a = [22, 22, 22, 22]
-    # print(list(set(a)))
-    # b = len(set(a))
-    # if b > 1:
-    #     print("重复")
+
+def extractDataFromFileName(file_list):
+    # file_list = ['C:/007/PythonProject/Ref_Data/10125AE/002_FAIL_datalog.txt',
+    #              'C:/007/PythonProject/Ref_Data/10125AE/003_FAIL_datalog.txt',
+    #              'C:/007/PythonProject/Ref_Data/10125AE/004_FAIL_datalog.txt']
+    for file in file_list:
+        pathMixName = file.split('/')  # 将fn按照/切分
+        pathx = "/".join(pathMixName[0:len(pathMixName) - 1])  # 假设切分后有n部分，将前n-1部分用/重新拼接，就是文件的路径
+        dut_list = pathMixName[len(pathMixName) - 1].split('_')  # 最后一个就是文件名，并且按照'_'拆分
+        # 提取数字作为DUT NO. 并且删除前导零
+        res = [ele.lstrip('0') for ele in dut_list]
+        DUT_NO.append('DUT_' + res[0])
+    return DUT_NO
+
+# if __name__ == '__main__':
+#     # extractDataFromFileName()
 
 
 

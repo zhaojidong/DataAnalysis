@@ -31,6 +31,7 @@ gss = glv.global_status_str()
 def ParseLogFile():
     log_file_list = glv.selected_file_list
     files_num = len(glv.selected_file_list)
+    glv.DUT_NO = glv.extractDataFromFileName(log_file_list)
     pd.set_option('display.width', None)
     # Follow Code: get all files name and file count
     file_name_list = os.listdir(log_file_path)
@@ -110,10 +111,9 @@ def ParseLogFile():
                     end_line_list = linecache.getline(log_file_list[f_num], line_data + 2).split()
                     end_line_list.insert(0, glv.end_label)  # '-EOL-'
                     end_line_list.append(TestTime[0])
-                    end_line_list.append(dut_num)
+                    end_line_list.append(glv.DUT_NO[f_num])
                     end_line_list.extend(['-'] * (title_len - len(end_line_list)))
-
-                    glv.DUT_NO.append(dut_num)
+                    # glv.DUT_NO.append(dut_num)
                     for each in zip(end_line_list, pd_dict):
                         ele, key = each
                         pd_dict[key].append(ele)
@@ -130,7 +130,6 @@ def ParseLogFile():
         if f_num == 0:
             final_pd = logs_pd
         else:
-            # final_pd = pd.concat([final_pd, logs_pd], axis=0)
             final_pd = final_pd.append(logs_pd, ignore_index=True)
         fp.close()
     final_pd.to_csv(glv.final_path)
@@ -139,8 +138,6 @@ def ParseLogFile():
     glv.log_col = title_len
     tree_pd = fill_Info4tree()
     glv.tree_df = tree_pd
-    # sa1 = SA.SA(tree_pd, tree_pd)
-    # sa1.Yeild()
     return tree_pd, final_pd, file_name_list, file_total
 
 def fill_Info4tree():

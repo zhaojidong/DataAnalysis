@@ -1,11 +1,13 @@
+import multiprocessing
+
 import pandas as pd
 from matplotlib import pyplot as plt
-import matplotlib
-import glovar as glv
+import matplotlib, os
 import mplcursors
 from PyQt5.QtCore import QUrl
-# from PyQt5.QtWebEngineWidgets import QWebEngineView
-
+from PyQt5.QtWebEngine import *
+from pyecharts.charts import Bar, Page, Scatter, Boxplot, Line
+from pyecharts import options as opts
 matplotlib.use('QtAgg')  # 指定渲染后端。QtAgg后端指用Agg二维图形库在Qt控件上绘图。
 # matplotlib.use('Qt5Agg')
 from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout
@@ -13,9 +15,14 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg, NavigationToolb
 from matplotlib.figure import Figure
 import numpy as np
 import glovar as glv
+# 导入输出图片工具
+from pyecharts.render import make_snapshot
+# 使用snapshot-selenium 渲染图片
+from snapshot_selenium import snapshot
+from multiprocessing import Process
 
 dwf_gs = glv.global_str()
-
+dwf_gts = glv.global_table_str()
 
 class DrawWaveForm(FigureCanvasQTAgg):
     def __init__(self):
@@ -154,9 +161,154 @@ class DrawWaveForm(FigureCanvasQTAgg):
         self.ax.set_xticks(rotation=225)
         self.draw()
 
-# class DrawWaveForm_PyChart():
-#     def __init__(self):
-#         self.myHtml = QWebEngineView()
-#
-#     def init(self):
-#         pass
+
+class DrawWaveForm_PyChart():
+    def __init__(self):
+        self.DUT_num_l = None
+        self.WF_PD = None
+        self.TName = []
+        self.xy_dict = None
+        self.y_axis = []
+        self.unit = None
+
+    def init(self):
+        self.WF_PD = glv.WaveForm_pd.copy()
+        glv.Html_Path = glv.Current_Path + '\\' + 'html\\'
+        data_y = 0
+        x_axis_count = 0
+        self.DUT_num_l = []
+        self.xy_dict = {}
+        self.y_axis = []
+        self.unit = None
+        self.TName = []
+        index_cnt = 0
+        glv.Chart_Success = False
+        for index, row in self.WF_PD.iterrows():
+            self.y_axis.append([])
+            x_axis_count += 1
+            self.TName.append(self.WF_PD.at[index, str(dwf_gs.TestName)] + '@' + self.WF_PD.at[
+                index, str(dwf_gs.Signal)])
+            self.unit = '(' + self.WF_PD.at[index, str(dwf_gs.Unit)] + ')'
+            for dut in range(glv.dut_count):
+                data_y += 1
+                DUT_num = 'DUT_' + str(glv.DUT_NO[dut])
+                self.DUT_num_l.append(DUT_num)
+                # self.DUT_V[dut] = self.WF_PD.at[index, DUT_num]
+                self.y_axis[index_cnt].append(self.WF_PD.at[index, DUT_num])
+            index_cnt += 1
+        self.xy_dict = dict(zip(self.TName, self.y_axis))
+
+    def CurveGraph(self):
+        box_dict = {'t1_qaz': [1, 2, 3], 't2_wsx': [4, 5, 6]}
+        page = Page(layout=Page.DraggablePageLayout)
+        scatter = Scatter()
+        for key, value in box_dict.items():
+            scatter.add_xaxis(key)
+            scatter.add_yaxis(key, value)
+        scatter.set_global_opts(title_opts=opts.TitleOpts(title="某商场销售情况1"))
+        page.add(scatter)
+        page.render(glv.char_name)
+        # os.system(glv.char_name)
+        glv.Chart_Success = True
+
+    def LineChart(self):
+        line = Line()
+        page = Page(layout=Page.DraggablePageLayout)
+        glv.char_name = dwf_gts.Chart_Html + '.html'
+        line.add_xaxis(self.DUT_num_l[0:glv.dut_count])
+        for key, value in self.xy_dict.items():
+            line.add_yaxis(key, value)
+        line.set_series_opts(label_opts=opts.LabelOpts(is_show=False),
+                             axislabel_opts=opts.LabelOpts(rotate=15)
+                             )
+        page.add(line)
+        page.render(glv.char_name)
+        # os.system(glv.char_name)
+        glv.Chart_Success = True
+
+    def ScatterDiagram(self):
+        page = Page(layout=Page.DraggablePageLayout)
+        scatter = Scatter()
+        glv.char_name = glv.Html_Path + dwf_gts.Chart_Html + '.html'
+        if glv.dut_count <= 5:
+            rotate_cnt = 0
+        else:
+            rotate_cnt = 30
+        scatter.add_xaxis(glv.DUT_NO)
+        for key, value in self.xy_dict.items():
+            scatter.add_yaxis(key, value)
+        scatter.set_global_opts(title_opts=opts.TitleOpts(title="Test Result"),
+                                toolbox_opts=opts.ToolboxOpts(is_show=False,
+                                                              orient="vertical",
+                                                              feature=opts.ToolBoxFeatureOpts(
+                                                                  save_as_image=opts.ToolBoxFeatureSaveAsImageOpts(
+                                                                      type_='jpeg',
+                                                                      name=self.TName[0]))),
+                                xaxis_opts=opts.AxisOpts(axisline_opts=opts.AxisLineOpts(is_on_zero=False),
+                                                         axislabel_opts=opts.LabelOpts(rotate=rotate_cnt)),
+                                yaxis_opts=opts.AxisOpts(split_number=10)
+                                )
+        scatter.set_series_opts(label_opts=opts.LabelOpts(is_show=False)
+                                )
+        page.add(scatter)
+        page.render(glv.char_name)
+        # os.system(glv.char_name)
+        glv.Chart_Success = True
+        if glv.SaveOpt == dwf_gts.none:
+            pass
+        elif glv.SaveOpt == dwf_gts.Combination:
+            save_path = r'C:\007\PythonProject\Ref_Data\10125AE\OutputImage' + '\\' + self.TName[0] + '.png'
+            make_snapshot(snapshot, page.render(), save_path)
+        elif glv.SaveOpt == dwf_gts.Separation:
+            Sub_Pro_1 = multiprocessing.Process(target=ScatterProcess, args=(glv.Html_Path, self.xy_dict, glv.DUT_NO,
+                                                rotate_cnt, ))
+            Sub_Pro_1.start()
+
+    def Histogram(self):
+        pass
+
+    def BoxPlots(self):
+        page = Page(layout=Page.DraggablePageLayout)
+        box_plot = Boxplot()
+        glv.char_name = dwf_gts.Chart_Html + '.html'
+        box_plot.add_xaxis([''])
+        print(self.y_axis)
+        print(self.xy_dict)
+        for index in range(len(self.TName)):
+            L_TwoD = glv.List_OneD2TwoD(self.y_axis[index], glv.dut_count)
+            print(self.TName[index], L_TwoD)
+            box_plot.add_yaxis(self.TName[index], box_plot.prepare_data(L_TwoD))
+
+        box_plot.set_global_opts(title_opts=opts.TitleOpts(title="Test Result"),
+                                toolbox_opts=opts.ToolboxOpts(is_show=True),
+                                xaxis_opts=opts.AxisOpts(axisline_opts=opts.AxisLineOpts(is_on_zero=False))
+                                )
+        box_plot.set_series_opts(label_opts=opts.LabelOpts(is_show=False),
+                                axislabel_opts=opts.LabelOpts(rotate=15)
+                                )
+        page.add(box_plot)
+        page.render(glv.char_name)
+        # os.system(glv.char_name)
+        glv.Chart_Success = True
+
+
+def ScatterProcess(HtmlPath, xy_dict, DUT_num_l, rotate_cnt):
+    xy_dict = xy_dict
+    DUT_num_l = DUT_num_l
+    for key, value in xy_dict.items():
+        page = Page(layout=Page.DraggablePageLayout)
+        scatter = Scatter()
+        scatter.add_xaxis(DUT_num_l[0:len(DUT_num_l)])
+        save_name = HtmlPath + key + '.html'
+        save_path = r'C:\007\PythonProject\Ref_Data\10125AE\OutputImage' + '\\' + key + '.png'
+        scatter.add_yaxis(key, value)
+        scatter.set_series_opts(label_opts=opts.LabelOpts(is_show=False))
+        scatter.set_global_opts(title_opts=opts.TitleOpts(title="Test Result"),
+                                xaxis_opts=opts.AxisOpts(
+                                                         axisline_opts=opts.AxisLineOpts(is_on_zero=False),
+                                                         axislabel_opts=opts.LabelOpts(rotate=rotate_cnt)),
+                                yaxis_opts=opts.AxisOpts(split_number=10))
+        page.add(scatter)
+        page.render(save_name)
+        # os.system(save_name)
+        make_snapshot(snapshot, page.render(), save_path)

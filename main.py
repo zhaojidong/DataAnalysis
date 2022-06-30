@@ -7,7 +7,8 @@
 """
 import sys, re, linecache, os, time, glovar as glv, TRY
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt
+from PyQt5.QtGui import *
+from PyQt5.QtCore import Qt, QUrl
 from DataAnalysis import Ui_MainWindow
 import CreatFile, HandleLogFIle
 from PyQt5.QtWidgets import QTreeWidgetItem, QTreeWidget, QWidget, QVBoxLayout, QPushButton, QApplication
@@ -15,9 +16,9 @@ import numpy as np
 import mplcursors
 from matplotlib import pyplot as plt
 import matplotlib
-from DrawWaveForm import DrawWaveForm as DWF
+from DrawWaveForm import DrawWaveForm as DWF, DrawWaveForm_PyChart as DWFPC
 import StatisticalAnalysis as SA
-
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 matplotlib.use('QtAgg')  # 指定渲染后端。QtAgg后端指用Agg二维图形库在Qt控件上绘图。
 # matplotlib.use('Qt5Agg')
 from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout
@@ -25,6 +26,7 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg, NavigationToolb
 
 gs = glv.global_str()
 gts = glv.global_table_str()
+gi = glv.global_init()
 test_name_dict = {}
 signal_list = []
 
@@ -32,6 +34,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):  # parent=None,so the HaiTu_UI is the topmost window
         super(HT_DataAnalysis_UI, self).__init__(
             parent)  # the super().__init__() excutes the constructor fo father, then we can use the property of father
+        self.ChartHtml = None
         self.gb = None
         self.figtoolbar = None
         self.canvas = None
@@ -54,9 +57,13 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
     def init(self):
         self.setupUi(myWindow)
         myWindow.setWindowTitle('海图微数据分析工具')
+        self.progressBar.setRange(0, 0)
+        glv.Current_Path = os.getcwd()
         # myWindow.setWindowIcon(QIcon(r'D:\Python\MyLogo\log_snail.jpeg'))
-        self.initFigure()
+        # self.initFigure()
+        # self.hl = QHBoxLayout(self)
         self.button_handler()
+        self.mainLayout()
 
     def button_handler(self):
         self.btn_yeild.clicked.connect(lambda: self.handle_checked_item())
@@ -189,6 +196,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
                         c_list.append(signal_name)
                 checked_items_dict[key] = c_list
             elif test_name.checkState(0) == Qt.PartiallyChecked:
+                c_list = []
                 if count != 0:
                     for j in range(0, count):
                         if test_name.child(j).checkState(0) == Qt.Checked:
@@ -201,7 +209,6 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
                     checked_items_dict[key] = c_list
         glv.checked_count_from_tree = note_checked_count
         glv.tree_checked = checked_items_dict
-        # print('checked_items_dict:', checked_items_dict)
         if result_check:
             self.error = False
         return checked_items_dict, result_check
@@ -215,13 +222,16 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         return get_result
 
     def handle_checked_item(self):
+        # self.progressBar.setRange(100)
         self.handleDisplay('<font color=\"#0000FF\">---- Export to excel...... ----<font>')
         if self.error:
             self.handleDisplay('No item was selected!!!')
+            self.progressBar.setValue(100)
             return
         checked_dict, checked_res = self.traverse_tree()
         if not checked_res:
             self.handleDisplay('No item was selected!!!')
+            self.progressBar.setValue(100)
             return
         HandleLogFIle.handle_FinalPd4tree()
         self.handleDisplay('Yield = ' + str(glv.R_yield) + '%')
@@ -242,27 +252,89 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         self.gb.addWidget(self.figtoolbar)  # add the toolbar to UI
         self.gb.addWidget(self.canvas)  # add the canvas to UI
 
+    # def initPyeCharts(self):
+    def mainLayout(self):
+        self.Py_Echart = DWFPC()
+        self.hboxLayout = QHBoxLayout(self)
+        # self.frame = QFrame(self)
+        # self.mainhboxLayout
+        # self.hboxLayout.addWidget(myWindow)
+        self.CH = QWebEngineView(self.ChartHtml)
+        self.hboxLayout.addWidget(self.CH)
 
+        # self.CH.load(QUrl('file:///C:/007/PythonProject/DataAnalysis/Chart_Html.html'))
+        # self.CH.setGeometry(0, 0, 1200, 1000)
+        # self.gb = QGridLayout(self.groupBox)
+        # self.gb.addWidget(self.CH)
+        # self.ChartHtml.setHtml('file:///C:/007/PythonProject/DataAnalysis/ScatterDiagram.html')
+        # self.ChartHtml.url()
+        # self.CH.load(QUrl('file:///C:/007/PythonProject/DataAnalysis/ScatterDiagram.html'))
+        # print('file:///C:/007/PythonProject/DataAnalysis/ScatterDiagram.html')
+        # self.CH.setContextMenuPolicy(Qt.NoContextMenu)
+        # self.CH.setGeometry(0,0,1200,1000)
+        # self.CH(self.ChartHtml)
+        # self.hboxLayout.addWidget(self.ChartHtml)
+        # self.gb = QGridLayout(self.groupBox)
+        # # print('3')
+        # self.gb.addWidget(self.ChartHtml)
+        # self.hl.addWidget()
+        # url = 'file:///C:/007/PythonProject/DataAnalysis/' + glv.char_name
+        # print('url:', url)
+        # 打开本地html文件
+        # self.myHtml.load(QUrl(url))
+        # self.myHtml.load(QUrl("bar1.html"))   #无法显示，要使用绝对地址定位，在地址前面加上 file:/// ，将地址的 \ 改为/
+        # 打开网页url
+        # self.myHtml.load(QUrl(url))
+        # self.gb = QGridLayout(self.groupBox)
+        # self.gb.addWidget(self.myHtml)  # add the toolbar to UI
+        # self.hboxLayout.addWidget(self.myHtml)
+        # self.setLayout(self.mainhboxLayout)
+        # self.browser.load(QUrl(url))
 
     def ploting(self):
         # self.gb.deleteLater()
-        self.canvas.init()
+        # self.canvas.init()
+        self.Py_Echart.init()
+        if self.AutoSaveChart.isChecked():
+            glv.Chart_Checked = True
+        glv.SaveOpt = self.comboBox_SaveOpt.currentText()
         if self.comboBox_chart.currentText() == str(gts.Curve_chart):
             print(str(gts.Curve_chart))
-            self.canvas.CurveGraph()
+            # self.canvas.CurveGraph()
+            self.Py_Echart.CurveGraph()
         elif self.comboBox_chart.currentText() == str(gts.Scatter_diagram):
             print(str(gts.Scatter_diagram))
-            self.canvas.ScatterDiagram()
+            # self.canvas.ScatterDiagram()
+            self.Py_Echart.ScatterDiagram()
         elif self.comboBox_chart.currentText() == str(gts.Histogram):
             print(str(gts.Histogram))
-            self.canvas.Histogram()
+            # self.canvas.Histogram()
+            self.Py_Echart.Histogram()
         elif self.comboBox_chart.currentText() == str(gts.Normal_distribution):
             print(str(gts.Normal_distribution))
         elif self.comboBox_chart.currentText() == str(gts.Line_chart):
             print(str(gts.Line_chart))
+            self.Py_Echart.LineChart()
         elif self.comboBox_chart.currentText() == str(gts.Box_plots):
             print(str(gts.Box_plots))
-            self.canvas.BoxPlots()
+            # self.canvas.BoxPlots()
+            self.Py_Echart.BoxPlots()
+        else:
+            self.handleDisplay('This Chart can not show')
+            return
+        if glv.Chart_Success:
+            url = ('file:///' + glv.char_name).replace('\\', '/')
+            self.CH.load(QUrl(url))
+            self.CH.setGeometry(0, 0, 1200, 1000)
+        else:
+            self.handleDisplay('This Chart can not show')
+        # self.label.setPixmap(self.ChartHtml)
+        # self.horizontalLayout.addChildWidget(self.ChartHtml)
+        # self.gb = QGridLayout(self.groupBox)
+        # print('3')
+        # self.gb.addWidget(self.ChartHtml)  # add the toolbar to UI
+        # print('4')
+
 
     # display data with textEdit append
     def handleDisplay(self, data):
@@ -270,10 +342,12 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         app.processEvents()
 
     def display_endInfo(self):
+        self.progressBar.setValue(100)
         # self.handleDisplay('<font color=\"#0000FF\">---- I AM FREE...... ----<font>')
         self.handleDisplay(str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
         self.handleDisplay('----------------------------------------')
         self.handleDisplay('\r\n')
+
 
 
 if __name__ == '__main__':

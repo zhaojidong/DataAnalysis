@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1464</width>
-    <height>864</height>
+    <width>1594</width>
+    <height>827</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>10</x>
       <y>10</y>
       <width>351</width>
-      <height>481</height>
+      <height>441</height>
      </rect>
     </property>
     <property name="autoExpandDelay">
@@ -36,7 +36,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>500</y>
+      <y>460</y>
       <width>351</width>
       <height>311</height>
      </rect>
@@ -47,13 +47,14 @@
      <rect>
       <x>370</x>
       <y>10</y>
-      <width>161</width>
+      <width>281</width>
       <height>81</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>25</pointsize>
+      <family>Arial</family>
+      <pointsize>28</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -65,111 +66,172 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>0</y>
-      <width>911</width>
-      <height>811</height>
+      <x>660</x>
+      <y>600</y>
+      <width>931</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="title">
      <string>Table</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox_3">
+   <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>170</y>
-      <width>161</width>
-      <height>51</height>
+      <x>660</x>
+      <y>10</y>
+      <width>931</width>
+      <height>581</height>
      </rect>
     </property>
-    <property name="title">
-     <string>Report</string>
-    </property>
-    <widget class="QComboBox" name="comboBox_report">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>141</width>
-       <height>21</height>
-      </rect>
-     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <property name="text">
-       <string>None</string>
-      </property>
+      <widget class="QWebEngineView" name="ChartHtml">
+       <property name="url">
+        <url>
+         <string>about:blank</string>
+        </url>
+       </property>
+      </widget>
      </item>
-     <item>
-      <property name="text">
-       <string>VP</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Normal</string>
-      </property>
-     </item>
-    </widget>
+    </layout>
    </widget>
-   <widget class="QGroupBox" name="groupBox_2">
+   <widget class="QCheckBox" name="AutoSaveChart">
     <property name="geometry">
      <rect>
       <x>370</x>
-      <y>110</y>
-      <width>161</width>
-      <height>51</height>
+      <y>210</y>
+      <width>141</width>
+      <height>19</height>
      </rect>
     </property>
-    <property name="title">
-     <string>Diagram</string>
+    <property name="text">
+     <string>AutoSaveChart</string>
     </property>
-    <widget class="QComboBox" name="comboBox_chart">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>141</width>
-       <height>22</height>
-      </rect>
-     </property>
-     <item>
-      <property name="text">
-       <string>None</string>
-      </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>112</y>
+      <width>280</width>
+      <height>79</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>ChartOption</string>
+       </property>
+      </widget>
      </item>
-     <item>
-      <property name="text">
-       <string>BoxPlots</string>
-      </property>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="comboBox_chart">
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>BoxPlots</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>LineChart</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ScatterDiagram</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Histogram</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>CurveChart</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>NormalDistribution</string>
+        </property>
+       </item>
+      </widget>
      </item>
-     <item>
-      <property name="text">
-       <string>LineChart</string>
-      </property>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>ReportOption</string>
+       </property>
+      </widget>
      </item>
-     <item>
-      <property name="text">
-       <string>ScatterDiagram</string>
-      </property>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBox_report">
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>VP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Normal</string>
+        </property>
+       </item>
+      </widget>
      </item>
-     <item>
-      <property name="text">
-       <string>Histogram</string>
-      </property>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>SaveOption</string>
+       </property>
+      </widget>
      </item>
-     <item>
-      <property name="text">
-       <string>CurveChart</string>
-      </property>
+     <item row="2" column="1">
+      <widget class="QComboBox" name="comboBox_SaveOpt">
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Separation</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Combination</string>
+        </property>
+       </item>
+      </widget>
      </item>
-     <item>
-      <property name="text">
-       <string>NormalDistribution</string>
-      </property>
-     </item>
-    </widget>
+    </layout>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>750</y>
+      <width>271</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -177,7 +239,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1464</width>
+     <width>1594</width>
      <height>26</height>
     </rect>
    </property>
@@ -196,6 +258,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
