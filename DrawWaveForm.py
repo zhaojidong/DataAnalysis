@@ -1,6 +1,7 @@
 import multiprocessing
 
 import pandas as pd
+import psutil
 from matplotlib import pyplot as plt
 import matplotlib, os
 import mplcursors
@@ -188,10 +189,10 @@ class DrawWaveForm_PyChart():
             x_axis_count += 1
             self.TName.append(self.WF_PD.at[index, str(dwf_gs.TestName)] + '@' + self.WF_PD.at[
                 index, str(dwf_gs.Signal)])
-            self.unit = '(' + self.WF_PD.at[index, str(dwf_gs.Unit)] + ')'
+            self.unit = self.WF_PD.at[index, str(dwf_gs.Unit)]
             for dut in range(glv.dut_count):
                 data_y += 1
-                DUT_num = 'DUT_' + str(glv.DUT_NO[dut])
+                DUT_num = str(glv.DUT_NO[dut])
                 self.DUT_num_l.append(DUT_num)
                 # self.DUT_V[dut] = self.WF_PD.at[index, DUT_num]
                 self.y_axis[index_cnt].append(self.WF_PD.at[index, DUT_num])
@@ -230,6 +231,7 @@ class DrawWaveForm_PyChart():
         page = Page(layout=Page.DraggablePageLayout)
         scatter = Scatter()
         glv.char_name = glv.Html_Path + dwf_gts.Chart_Html + '.html'
+        yaxis_name = '(Unit: ' + self.unit + ')'
         if glv.dut_count <= 5:
             rotate_cnt = 0
         else:
@@ -246,7 +248,8 @@ class DrawWaveForm_PyChart():
                                                                       name=self.TName[0]))),
                                 xaxis_opts=opts.AxisOpts(axisline_opts=opts.AxisLineOpts(is_on_zero=False),
                                                          axislabel_opts=opts.LabelOpts(rotate=rotate_cnt)),
-                                yaxis_opts=opts.AxisOpts(split_number=10)
+                                yaxis_opts=opts.AxisOpts(split_number=10,
+                                                         name=yaxis_name, name_location='center', name_gap=50)
                                 )
         scatter.set_series_opts(label_opts=opts.LabelOpts(is_show=False)
                                 )
@@ -261,7 +264,11 @@ class DrawWaveForm_PyChart():
             make_snapshot(snapshot, page.render(), save_path)
         elif glv.SaveOpt == dwf_gts.Separation:
             Sub_Pro_1 = multiprocessing.Process(target=ScatterProcess, args=(glv.Html_Path, self.xy_dict, glv.DUT_NO,
-                                                rotate_cnt, ))
+                                                rotate_cnt, yaxis_name, ))
+
+            glv.Sub_Process = Sub_Pro_1
+            glv.Process_PPID = os.getppid()
+            print('PID:', glv.Process_PPID, os.getppid())
             Sub_Pro_1.start()
 
     def Histogram(self):
@@ -292,7 +299,7 @@ class DrawWaveForm_PyChart():
         glv.Chart_Success = True
 
 
-def ScatterProcess(HtmlPath, xy_dict, DUT_num_l, rotate_cnt):
+def ScatterProcess(HtmlPath, xy_dict, DUT_num_l, rotate_cnt, yaxis_name):
     xy_dict = xy_dict
     DUT_num_l = DUT_num_l
     for key, value in xy_dict.items():
@@ -304,10 +311,11 @@ def ScatterProcess(HtmlPath, xy_dict, DUT_num_l, rotate_cnt):
         scatter.add_yaxis(key, value)
         scatter.set_series_opts(label_opts=opts.LabelOpts(is_show=False))
         scatter.set_global_opts(title_opts=opts.TitleOpts(title="Test Result"),
-                                xaxis_opts=opts.AxisOpts(
-                                                         axisline_opts=opts.AxisLineOpts(is_on_zero=False),
+                                xaxis_opts=opts.AxisOpts(axisline_opts=opts.AxisLineOpts(is_on_zero=False),
                                                          axislabel_opts=opts.LabelOpts(rotate=rotate_cnt)),
-                                yaxis_opts=opts.AxisOpts(split_number=10))
+                                yaxis_opts=opts.AxisOpts(split_number=10,
+                                                         name=yaxis_name, name_location='center', name_gap=40)
+                                )
         page.add(scatter)
         page.render(save_name)
         # os.system(save_name)

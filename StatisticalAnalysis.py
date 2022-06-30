@@ -87,14 +87,14 @@ class SA:
                 SA_df.at[index, str(gs.HighLimit)] = SA_df_copy.at[index, str(gs.HighLimit)]
                 SA_df.at[index, str(gs.CheckStatus)] = SA_df_copy.at[index, str(gs.CheckStatus)]
                 for dut in range(glv.dut_count):
-                    DUT_num = 'DUT_' + str(glv.DUT_NO[dut])
+                    DUT_num = str(glv.DUT_NO[dut])
                     SA_df.at[index, DUT_num] = SA_df_copy.at[index + dut * shift_count, str(gs.Measure)]
                     DUT_Val[dut] = SA_df_copy.at[index + dut * shift_count, str(gs.Measure)]
                 # print(DUT_Val)
                 try:
                     DUT_Val, error_flag, unit = glv.extractUnit7UnifyValue(DUT_Val)
                     for dut in range(glv.dut_count):
-                        DUT_num = 'DUT_' + str(glv.DUT_NO[dut])
+                        DUT_num = str(glv.DUT_NO[dut])
                         SA_df.at[index, DUT_num] = DUT_Val[dut]
                 except:
                     print('The data or unit maybe wrong')

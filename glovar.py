@@ -45,6 +45,8 @@ Chart_Checked = False
 SaveOpt = None
 Current_Path = ''
 Html_Path = ''
+Process_PPID = None
+Sub_Process = None
 """
 global class---dataframe title
 """

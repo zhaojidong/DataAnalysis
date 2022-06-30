@@ -1,0 +1,200 @@
+TCNT# 87       SITE# 0
+NO Site  Result  TestName           Signal          Measure   LowLimit  HighLimit   Force
+3    0   PASS  OS_NEG               CH_VCOMS_B1     -332.78 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_VCOMS_T1     -368.600 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_VREFN_B1     -279.410 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_VREFN_T1     -295.428 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_VREFP_B1     -394.664 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_VREFP_T1     -394.382 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_VRPGA_B1     -392.018 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_VRPGA_T1     -394.255 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_VDDCL1       -397.091 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_RSH1         -398.370 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_GRSTH1       -399.050 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_TX2H1        -395.050 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CH_TX1H1        -397.637 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               SA              -400.553 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               SYSSTBN         -423.800 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               SYSRSTN         -462.099 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               VCP2            -416.126 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               VIREF           -438.180 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               SDO             -467.425 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               CSN             -462.779 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               SCK             -464.826 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               SDI             -431.409 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               HSYNC           -467.926 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               VSYNC           -467.922 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               DTSTR0          -462.769 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               DTSTR1          -465.203 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               DTSTR3          -464.690 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               DTSTR4          -465.383 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               TOUT0           -466.610 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               TOUT1           -467.725 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               TOUT2           -467.863 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               ATST0           -420.095 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               ATST1           -426.026 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               ATST2           -410.375 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               RCK2            -460.167 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               TRGEXP          -463.242 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               INCLK           -431.205 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_NEG               MSTSLV          -460.414 mV   -800.000mV   -100.000mV   -100.000uA
+3    0   PASS  OS_POS               CH_TX2L1        400.221 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_GRSTL1       405.519 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_TX1L1        404.757 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               VCP1            430.373 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_VCOMS_B1     358.992 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_VCOMS_T1     358.450 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_VREFN_B1     358.858 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_VREFN_T1     358.995 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_VREFP_B1     335.071 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_VREFP_T1     335.989 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_VRPGA_B1     360.091 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_VRPGA_T1     360.880 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CH_VDDCL1       424.609 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               SA              374.910 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               SYSSTBN         388.335 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               SYSRSTN         429.262 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               VIREF           401.009 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               SDO             435.191 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               CSN             431.604 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               SCK             432.365 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               SDI             399.351 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               HSYNC           434.461 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               VSYNC           435.141 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               DTSTR0          429.735 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               DTSTR1          431.725 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               DTSTR3          429.088 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               DTSTR4          428.997 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               TOUT0           433.249 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               TOUT1           433.275 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               TOUT2           434.773 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               ATST0           383.646 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               ATST1           388.646 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               ATST2           376.766 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               RCK2            430.087 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               TRGEXP          430.898 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               INCLK           393.349 mV   100.000mV   800.000mV   100.000uA
+3    0   PASS  OS_POS               MSTSLV          429.750 mV   100.000mV   800.000mV   100.000uA
+4    0   PASS  Leakage              SA              882.347 pA   -10.000uA   10.000uA   0.000V
+4    0   PASS  Leakage              SYSSTBN         -63.529 nA   -10.000uA   10.000uA   0.000V
+4    0   PASS  Leakage              SYSRSTN         -18.253 nA   -10.000uA   10.000uA   0.000V
+4    0   PASS  Leakage              SDO             -17.045 nA   -10.000uA   10.000uA   0.000V
+4    0   PASS  Leakage              CSN             16.389 nA   -10.000uA   10.000uA   0.000V
+4    0   PASS  Leakage              SCK             3.061 nA   -10.000uA   10.000uA   0.000V
+4    0   PASS  Leakage              SDI             10.845 nA   -10.000uA   10.000uA   0.000V
+4    0   PASS  Leakage              TRGEXP          -2.593 nA   -10.000uA   10.000uA   0.000V
+5    0    PASS   IDD_dynamic test_config6_0xBF.test_config6_0xBF   SPI   FC(0)      FA(0)
+5    0    PASS   IDD_dynamic test_config_0x4C.test_config_0x4C   SPI   FC(0)      FA(0)
+5    0    PASS   IDD_dynamic test_config1_0x4E.test_config1_0x4E   SPI   FC(0)      FA(0)
+5    0    PASS   IDD_dynamic test_config3_0xA2.test_config3_0xA2   SPI   FC(0)      FA(0)
+5    0    PASS   IDD_dynamic test_config4_0xBF.test_config4_0xBF   SPI   FC(0)      FA(0)
+5    0    PASS   IDD_dynamic test_config5_0xBF.test_config5_0xBF   SPI   FC(0)      FA(0)
+5    0   PASS  IDD_dynamic          VDD33           155.580 mA   0.000A   700.000mA   3.300V
+5    0   PASS  IDD_dynamic          VDDP33          128.177 mA   0.000A   700.000mA   3.300V
+5    0   PASS  IDD_dynamic          VDDCP33         8.171 mA   0.000A   700.000mA   3.300V
+5    0   PASS  IDD_dynamic          VDD12L          23.914 mA   0.000A   700.000mA   1.200V
+5    0   PASS  IDD_dynamic          VDD12D          42.666 mA   0.000A   700.000mA   1.200V
+5    0   PASS  IDD_dynamic          VDD12CP         8.545 mA   0.000A   700.000mA   1.200V
+5    0   PASS  IDD_dynamic          VDD18           28.251 mA   0.000A   50.000mA   1.800V
+5    0   PASS  IDD_dynamic          VDD18L          12.870 mA   0.000A   700.000mA   1.800V
+5    0   PASS  IDD_static           VDD33           10.079 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDD_static           VDDP33          19.224 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDD_static           VDDCP33         141.215 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDD_static           VDD12L          -61.095 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDD_static           VDD12D          751.356 uA   0.000A   700.000mA   1.200V
+5    0   FAIL  IDD_static           VDD12CP         -434.985 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDD_static           VDD18           23.251 mA   0.000A   50.000mA   1.800V
+5    0   PASS  IDD_static           VDD18L          1.144 mA   0.000A   700.000mA   1.800V
+5    0   PASS  IDD_standby          VDD33           20.924 mA   0.000A   700.000mA   3.300V
+5    0   PASS  IDD_standby          VDDP33          509.333 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDD_standby          VDDCP33         3.283 mA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDD_standby          VDD12L          -43.674 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDD_standby          VDD12D          3.161 mA   0.000A   700.000mA   1.200V
+5    0   PASS  IDD_standby          VDD12CP         2.799 mA   0.000A   700.000mA   1.200V
+5    0   PASS  IDD_standby          VDD18           23.296 mA   0.000A   50.000mA   1.800V
+5    0   PASS  IDD_standby          VDD18L          4.586 mA   0.000A   700.000mA   1.800V
+5    0    PASS   IDDQ       IDD_LvdsOff.IDD_LvdsOff   SPI   FC(0)      FA(0)
+5    0   PASS  IDDQ                 VDD33           22.249 mA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDDP33          116.571 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDDCP33         -175.602 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDD12L          -175.737 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12D          714.828 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12CP         129.621 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD18           19.138 mA   0.000A   30.000mA   1.800V
+5    0   PASS  IDDQ                 VDD18L          4.931 mA   0.000A   700.000mA   1.800V
+5    0    PASS   IDDQ       IDD_OutlogicOff.IDD_OutlogicOff   SPI   FC(0)      FA(0)
+5    0   PASS  IDDQ                 VDD33           22.180 mA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDDP33          -72.495 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDDCP33         89.536 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDD12L          116.489 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12D          1.023 mA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12CP         307.357 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD18           19.137 mA   0.000A   30.000mA   1.800V
+5    0   PASS  IDDQ                 VDD18L          4.880 mA   0.000A   700.000mA   1.800V
+5    0    PASS   IDDQ       IDD_ADCLOG_HSCAN_OFF.IDD_ADCLOG_HSCAN_OFF   SPI   FC(0)      FA(0)
+5    0   PASS  IDDQ                 VDD33           21.946 mA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDDP33          -68.556 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDDCP33         305.241 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDD12L          -48.732 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12D          851.952 uA   0.000A   700.000mA   1.200V
+5    0   FAIL  IDDQ                 VDD12CP         -45.872 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD18           19.255 mA   0.000A   30.000mA   1.800V
+5    0   PASS  IDDQ                 VDD18L          5.655 mA   0.000A   700.000mA   1.800V
+5    0    PASS   IDDQ       IDD_ADC_OFF.IDD_ADC_OFF   SPI   FC(0)      FA(0)
+5    0   PASS  IDDQ                 VDD33           21.894 mA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDDP33          337.711 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDDCP33         393.433 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDD12L          -164.498 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12D          798.001 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12CP         303.433 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD18           19.191 mA   0.000A   30.000mA   1.800V
+5    0   PASS  IDDQ                 VDD18L          4.852 mA   0.000A   700.000mA   1.800V
+5    0    PASS   IDDQ       IDD_CSL_OFF.IDD_CSL_OFF   SPI   FC(0)      FA(0)
+5    0   PASS  IDDQ                 VDD33           22.472 mA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDDP33          409.173 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDDCP33         5.276 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDD12L          -47.608 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12D          446.761 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12CP         143.078 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD18           19.194 mA   0.000A   30.000mA   1.800V
+5    0   PASS  IDDQ                 VDD18L          5.063 mA   0.000A   700.000mA   1.800V
+5    0    PASS   IDDQ       IDD_VSCAN_OFF.IDD_VSCAN_OFF   SPI   FC(0)      FA(0)
+5    0   PASS  IDDQ                 VDD33           21.999 mA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDDP33          -3.846 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDDCP33         -74.490 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDD12L          -304.429 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12D          726.629 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12CP         76.917 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD18           19.217 mA   0.000A   30.000mA   1.800V
+5    0   PASS  IDDQ                 VDD18L          5.138 mA   0.000A   700.000mA   1.800V
+5    0    PASS   IDDQ       IDD_POWER_OFF.IDD_POWER_OFF   SPI   FC(0)      FA(0)
+5    0   PASS  IDDQ                 VDD33           22.343 mA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDDP33          -179.970 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDDCP33         328.834 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDD12L          444.119 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12D          554.662 uA   0.000A   700.000mA   1.200V
+5    0   FAIL  IDDQ                 VDD12CP         -49.236 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD18           19.195 mA   0.000A   30.000mA   1.800V
+5    0   PASS  IDDQ                 VDD18L          4.708 mA   0.000A   700.000mA   1.800V
+5    0    PASS   IDDQ       IDD_VIREF_OFF.IDD_VIREF_OFF   SPI   FC(0)      FA(0)
+5    0   PASS  IDDQ                 VDD33           22.343 mA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDDP33          -161.964 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDDCP33         -44.156 uA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDD12L          399.161 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12D          744.613 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12CP         80.842 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD18           19.172 mA   0.000A   30.000mA   1.800V
+5    0   PASS  IDDQ                 VDD18L          4.851 mA   0.000A   700.000mA   1.800V
+5    0    PASS   IDDQ       IDD_VIREF_OFF.IDD_VIREF_OFF   SPI   FC(0)      FA(0)
+5    0   PASS  IDDQ                 VDD33           22.293 mA   0.000A   700.000mA   3.300V
+5    0   PASS  IDDQ                 VDDP33          173.966 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDDCP33         -327.269 uA   0.000A   700.000mA   3.300V
+5    0   FAIL  IDDQ                 VDD12L          -160.002 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12D          859.819 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD12CP         244.000 uA   0.000A   700.000mA   1.200V
+5    0   PASS  IDDQ                 VDD18           19.234 mA   0.000A   30.000mA   1.800V
+5    0   PASS  IDDQ                 VDD18L          4.878 mA   0.000A   700.000mA   1.800V
+-------------------   ------------
+Site   Fail   Total    Cate   Bin    XCoord   YCoord         TestTime(16325.8ms)
+-------------------   ------------
+   0     88      88      50     3      88       0

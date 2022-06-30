@@ -19,6 +19,7 @@ import matplotlib
 from DrawWaveForm import DrawWaveForm as DWF, DrawWaveForm_PyChart as DWFPC
 import StatisticalAnalysis as SA
 from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtWebEngineWidgets import *
 matplotlib.use('QtAgg')  # 指定渲染后端。QtAgg后端指用Agg二维图形库在Qt控件上绘图。
 # matplotlib.use('Qt5Agg')
 from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout
@@ -34,6 +35,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):  # parent=None,so the HaiTu_UI is the topmost window
         super(HT_DataAnalysis_UI, self).__init__(
             parent)  # the super().__init__() excutes the constructor fo father, then we can use the property of father
+        self.hboxLayout = None
         self.ChartHtml = None
         self.gb = None
         self.figtoolbar = None
@@ -51,8 +53,8 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         self.test_item = None
         self.file_name_list = None
         self.root = None
+        self.hboxLayout = QHBoxLayout(self)
         self.init()
-        # self.plotfig()
 
     def init(self):
         self.setupUi(myWindow)
@@ -60,14 +62,41 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         self.progressBar.setRange(0, 0)
         glv.Current_Path = os.getcwd()
         # myWindow.setWindowIcon(QIcon(r'D:\Python\MyLogo\log_snail.jpeg'))
-        # self.initFigure()
-        # self.hl = QHBoxLayout(self)
+        self.init_show()
         self.button_handler()
-        self.mainLayout()
+        self.initChart()
+
+    def init_show(self):
+        self.CH = QWebEngineView(self.ChartHtml)
+        self.CH.setHtml('''<!DOCTYPE html>
+                           <html lang="en">
+                           <head>
+                               <meta charset="UTF-8">
+                               <title>Title</title>
+                           </head>
+                           <body>
+                           <!--<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />-->
+                           <!--<h1>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;海图微电子</h1>-->
+                           <!--<h1>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;DISPLAY CHART</h1>-->
+                           <img src="static/123.jpg" alt='image' width="925" height="600">
+                           </body>
+                           </html>''')
+        self.CH.setGeometry(0, 0, 1200, 1000)
 
     def button_handler(self):
         self.btn_yeild.clicked.connect(lambda: self.handle_checked_item())
         self.actionOpen.triggered.connect(lambda: HT_DataAnalysis_UI.actionOpen(self))
+        self.btn_abort.clicked.connect(lambda: self.abortProcess())
+
+    def abortProcess(self):
+        try:
+            glv.Sub_Process.terminate()  # stop the Process
+            message = 'Killed Process ' + str(glv.Process_PPID) + '--Terminate Saving!!!'
+            self.handleDisplay('<font color=\"#FF4500\">' + message + '<font>')
+            glv.Sub_Process.join()  # Avoid zombie processes
+        except OSError:
+            print('no process')
+
 
     def actionOpen(self):
         self.handleDisplay('<font color=\"#0000FF\">---- Loading the log file...  ----<font>')
@@ -79,8 +108,12 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
             self.error = True
             return
         self.error = False
+        self.init_glv()
         self.tree.clear()
         self.create_tree()
+
+    def init_glv(self):
+        glv.DUT_NO = []
 
     def create_tree(self):
         tree_pd, final_pd, file_name_list, file_total = HandleLogFIle.ParseLogFile()
@@ -253,15 +286,18 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         self.gb.addWidget(self.canvas)  # add the canvas to UI
 
     # def initPyeCharts(self):
-    def mainLayout(self):
+    def initChart(self):
         self.Py_Echart = DWFPC()
-        self.hboxLayout = QHBoxLayout(self)
         # self.frame = QFrame(self)
         # self.mainhboxLayout
         # self.hboxLayout.addWidget(myWindow)
-        self.CH = QWebEngineView(self.ChartHtml)
-        self.hboxLayout.addWidget(self.CH)
-
+        # self.CH = QWebEngineView(self.ChartHtml)
+        # self.CH.setGeometry(0, 0, 1200, 1000)
+        # self.CH.
+        # self.hboxLayout.addWidget(self.CH, 0, Qt.AlignVCenter)
+        # self.hboxLayout.setSpacing(0)
+        # self.setCentralWidget(self.CH)
+        # self.CH.page().fullScreenRequested.connect(QWebEngineFullScreenRequest.accept)
         # self.CH.load(QUrl('file:///C:/007/PythonProject/DataAnalysis/Chart_Html.html'))
         # self.CH.setGeometry(0, 0, 1200, 1000)
         # self.gb = QGridLayout(self.groupBox)
@@ -295,7 +331,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         # self.gb.deleteLater()
         # self.canvas.init()
         self.Py_Echart.init()
-        if self.AutoSaveChart.isChecked():
+        if glv.SaveOpt is not None:
             glv.Chart_Checked = True
         glv.SaveOpt = self.comboBox_SaveOpt.currentText()
         if self.comboBox_chart.currentText() == str(gts.Curve_chart):
@@ -325,7 +361,7 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         if glv.Chart_Success:
             url = ('file:///' + glv.char_name).replace('\\', '/')
             self.CH.load(QUrl(url))
-            self.CH.setGeometry(0, 0, 1200, 1000)
+            # self.CH.load()
         else:
             self.handleDisplay('This Chart can not show')
         # self.label.setPixmap(self.ChartHtml)
@@ -334,7 +370,6 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         # print('3')
         # self.gb.addWidget(self.ChartHtml)  # add the toolbar to UI
         # print('4')
-
 
     # display data with textEdit append
     def handleDisplay(self, data):
@@ -347,7 +382,6 @@ class HT_DataAnalysis_UI(QMainWindow, Ui_MainWindow):
         self.handleDisplay(str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))))
         self.handleDisplay('----------------------------------------')
         self.handleDisplay('\r\n')
-
 
 
 if __name__ == '__main__':
